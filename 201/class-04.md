@@ -96,11 +96,52 @@ can be found at the bottom of this page.</p>
 
 Absolute URL: Points to a location defined by its absolute location on the web, including protocol and domain name.
 Example: If an index.html page is uploaded to a directory called projects that sits inside the root of a web server, and the website's domain is https://www.example.com, the page would be available at https://www.example.com/projects/index.html
+An absolute URL will always point to the same location, no matter where it's used.
 
+Relative URL: Points to a location that is relative to the file you are linking from, more like what we looked at in the previous section. For example, if we wanted to link from our example file at https://www.example.com/projects/index.html to a PDF file in the same directory, the URL would just be the filename — project-brief.pdf — no extra information needed. If the PDF was available in a subdirectory inside projects called pdfs, the relative link would be pdfs/project-brief.pdf (the equivalent absolute URL would be https://www.example.com/projects/pdfs/project-brief.pdf.)
 
+#### Link best practices
 
+Use clear link wording:
+Screen reader users access links jumping around the links to find useful info.
+Search engines use link text to index target files so include keywords in your link text.
+visual readers skim text. 
+Good link text
+```
+<p><a href="https://www.mozilla.org/firefox/">
+  Download Firefox
+</a></p>
+```
+Bad link text
+```
+<p><a href="https://www.mozilla.org/firefox/">
+  Click here
+</a>
+to download Firefox</p>
+```
 
+Other tips:
+Don't repeat the URL as part of the link text.
+Don't say "link" or "links to" in the link text.
+Keep your link text as short as possible.
+Minimize instances where multiple copies of the same text are linked to different places. 
 
+####Linking to non-HTML resources — leave clear signposts
+Let's look at some examples, to see what kind of text can be used here:
+
+```
+<p><a href="https://www.example.com/large-report.pdf">
+  Download the sales report (PDF, 10MB)
+</a></p>
+
+<p><a href="https://www.example.com/video-stream/" target="_blank">
+  Watch the video (stream opens in separate tab, HD quality)
+</a></p>
+
+<p><a href="https://www.example.com/car-game">
+  Play the car game (requires Flash)
+</a></p>
+```
 
 
 
