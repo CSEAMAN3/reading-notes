@@ -1,6 +1,5 @@
 
-
-
+# Readings: Images, Color, Text
 
 
 
