@@ -4,8 +4,14 @@
 # Reading notes: Class 04
 
 #### Reference pages:
-Hyperlinks
+Creating Hyperlinks
 https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Creating_hyperlinks
+
+CSS Layout: Normal Flow CSS
+https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Normal_Flow
+
+Layout: Positioning
+https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning
 
 ## Learn HTML
 ### Hyperlinks
@@ -126,7 +132,7 @@ Don't say "link" or "links to" in the link text.
 Keep your link text as short as possible.
 Minimize instances where multiple copies of the same text are linked to different places. 
 
-####Linking to non-HTML resources — leave clear signposts
+#### Linking to non-HTML resources — leave clear signposts
 Let's look at some examples, to see what kind of text can be used here:
 
 ```
@@ -142,15 +148,66 @@ Let's look at some examples, to see what kind of text can be used here:
   Play the car game (requires Flash)
 </a></p>
 ```
+#### Use the download attribute when linking to a download
+Used when linking to a resource which is intended for download and not loaded in the browser.
+Example:
+```
+
+<a href="https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US"
+   download="firefox-latest-64bit-installer.exe">
+  Download Latest Firefox for Windows (64-bit) (English, US)
+</a>
+
+```
+#### E-mail links
+
+Creating an email link you need to use the mailto: link inside the href attribute of the opening anchor tag.
+Example
+```
+
+<a href="mailto:nowhere@mozilla.org">Send email to nowhere</a>
+
+```
+
+Here's an example that includes a cc, bcc, subject and body:
+```
+
+<a href="mailto:nowhere@mozilla.org?cc=name2@rapidtables.com&bcc=name3@rapidtables.com&subject=The%20subject%20of%20the%20email&body=The%20body%20of%20the%20email">
+  Send mail with cc, bcc, subject and body
+</a>
+
+```
+
+1) To create a basic link, we wrap text or other content inside what element?
+The anchor element <a href="#"></a>
+
+2) The href attribute contains what information?
+ The URL that the link is will request. Can also link internally to other site pages and or even to a specific part of a page.
+ 
+3) What are some ways we can ensure links on our pages are accessible to all readers?
+https://usability.yale.edu/web-accessibility/articles/links
+Important for the link text to make sense as sreen readers can jump around the links to help locating content. Avoid "click me" or "read more"
+give more context to the link by using the title attribute.
+images should use the alt text to convey the location and purpose of the link. The alt text should not describe the image. Treat image links as links, not as images.
+We can use specific color, font weight and also an underline to help identify visually what is a link.
+As a general rule, designers should design custom focus styles. Focus styles should be noticeable and salient.
+consider: aria-describedby, aria-label, and aria-labelledby. To read more on this and other techniques follow the link below the question.
 
 
+## CSS Layout.
 
+Starting with a solid, well-structured document that's readable in normal flow is the best way to begin any webpage.
 
+#### How are elements laid out by default?
 
+Block level elements: Fills the available inline space of the parent element containing it and grows along the block dimension to accommodate its content.
+Inline elements: Is the size of its content.
+Inline-block elements: Similar to inline elements except they can have padding and margins added on all four sides.
 
+#### Margin Collapsing.
+If two vertically adjacent elements both have a margin set on them and their margins touch, the larger of the two margins remains and the smaller one disappears. This is known as margin collapsing. Collapsing margins is only relevant in the vertical direction.
 
-
-
+#### Positioning
 
 
 
