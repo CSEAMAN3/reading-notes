@@ -207,12 +207,112 @@ Inline-block elements: Similar to inline elements except they can have padding a
 #### Margin Collapsing.
 If two vertically adjacent elements both have a margin set on them and their margins touch, the larger of the two margins remains and the smaller one disappears. This is known as margin collapsing. Collapsing margins is only relevant in the vertical direction.
 
-#### Positioning
+### Positioning
+Positioning allows you to take elements out of normal document flow and make them behave differently.
 
+There are a number of different types of positioning that you can put into effect on HTML elements. To make a specific type of positioning active on an element, we use the position property.
 
+#### Static positioning
+This is default for every element. It just means "put the element into its normal position in the document flow.
 
+#### Relative positioning
+Similar to static positioning, except that once the positioned element has taken its place in the normal flow, you can then modify its final position, including making it overlap other elements on the page.
+To modify the elements position you need to use the top, bottom, left, and right properties.
 
+#### Introducing top, bottom, left, and right
+top, bottom, left, and right are used alongside position to specify exactly where to move the positioned element to.
+the value of these properties can be set in pixels, em, rems, %, etc
 
+#### Absolute positioning
+An absolutely positioned element no longer exists in the normal document flow. Instead, it sits on its own layer separate from everything else.
+It means that we can create isolated UI features that don't interfere with the layout of other elements on the page.
 
+top, bottom, left, and right behave in a different way with absolute positioning. Rather than positioning the element based on its relative position within the normal document flow, they specify the distance the element should be from each of the containing element's sides.
+
+You can use top, bottom, left, and right to resize elements if you need to.
+Yes, margins still affect positioned elements. Margin collapsing doesn't, however.
+
+#### Positioning contexts
+Which element is the "containing element" of an absolutely positioned element?
+It is dependent on the position property of the ancestors of the positioned element. 
+The absolutely positioned element will position it self absolutey to it's nearest relative positioned parent.
+If no there is no relative positioned parent the absolutely positioned element will be displayed outside of the <html> element and be positioned relative to the initial viewport.
+
+#### Introducing z-index
+When elements start to overlap, what determines which elements appear over others and which elements appear under others?
+Positioned elements will overlap none positioned elements.
+Positioned elements later in the source order win over positioned elements earlier in the source order.
+
+Can you change the stacking order? Yes, you can, by using the z-index property. "z-index" is a reference to the z-axis.
+z-index values affect where positioned elements sit on that axis; positive values move them higher up the stack, negative values move them lower down the stack. By default, positioned elements all have a z-index of auto, which is effectively 0.
+z-index only accepts unitless index values. 1,2,3,4 ect
+
+#### Fixed positioning
+This works in exactly the same way as absolute positioning, with one key difference: whereas absolute positioning fixes an element in place relative to its nearest positioned ancestor, fixed positioning usually fixes an element in place relative to the visible portion of the viewport.
+An ecception to this may be if one of the element's ancestors is a fixed containing block because its transform property has a value other than none.) This means that you can create useful UI items that are fixed in place, like persistent navigation menus that are always visible no matter how much the page scrolls.
+  
+#### Sticky positioning
+his is basically a hybrid between relative and fixed position. It allows a positioned element to act like it's relatively positioned until it's scrolled to a certain threshold (e.g., 10px from the top of the viewport), after which it becomes fixed.
+
+ ```
+  .positioned {
+  position: sticky;
+  top: 30px;
+  left: 30px;
+}
+```
+ 
+#### Scrolling index
+An interesting and common use of position: sticky is to create a scrolling index page where different headings stick to the top of the page as they reach it. The markup for such an example might look like so:
+```
+<h1>Sticky positioning</h1>
+
+<dl>
+    <dt>A</dt>
+    <dd>Apple</dd>
+    <dd>Ant</dd>
+    <dd>Altimeter</dd>
+    <dd>Airplane</dd>
+    <dt>B</dt>
+    <dd>Bird</dd>
+    <dd>Buzzard</dd>
+    <dd>Bee</dd>
+    <dd>Banana</dd>
+    <dd>Beanstalk</dd>
+    <dt>C</dt>
+    <dd>Calculator</dd>
+    <dd>Cane</dd>
+    <dd>Camera</dd>
+    <dd>Camel</dd>
+    <dt>D</dt>
+    <dd>Duck</dd>
+    <dd>Dime</dd>
+    <dd>Dipstick</dd>
+    <dd>Drone</dd>
+    <dt>E</dt>
+    <dd>Egg</dd>
+    <dd>Elephant</dd>
+    <dd>Egret</dd>
+</dl>
+```
+```
+dt {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  margin: 1em 0;
+}
+```
+Sticky elements are "sticky" relative to the nearest ancestor with a "scrolling mechanism", which is determined by its ancestors' position property.
+  
+  
+  
+  
+  
+  
+  
 
 
