@@ -1,6 +1,8 @@
+# Reading notes: Class 05
 
-# Readings: Images, Color, Text
+## Readings: Images, Color, Text
 
+#### References
 
 
 
