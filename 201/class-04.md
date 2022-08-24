@@ -13,6 +13,9 @@ https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Normal_Flow
 Layout: Positioning
 https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning
 
+JS functions:
+https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Functions
+
 ## Learn HTML
 ### Hyperlinks
 
@@ -308,8 +311,40 @@ dt {
 ```
 Sticky elements are "sticky" relative to the nearest ancestor with a "scrolling mechanism", which is determined by its ancestors' position property.
   
-  
-  
+## Learn JS: Functions – Reusable Blocks of Code.
+
+functions allow you to store a piece of code that does a single task inside a defined block, and then call that code whenever you need it using a single short command — rather than having to type out the same code multiple times.
+
+#### Where do I find functions?
+In JavaScript, you'll find functions everywhere. Pretty much anytime you make use of a JavaScript structure that features a pair of parentheses — () — and you're not using a common built-in language structure like a for loop, while or do...while loop, or if...else statement, you are making use of a function.
+
+#### Built-in browser functions
+Examples:
+Manipulated a text string
+```
+const myText = 'I am a string';
+const newString = myText.replace('string', 'sausage');
+console.log(newString);
+// the replace() string function takes a source string,
+// and a target string and replaces the source string,
+// with the target string, and returns the newly formed string
+```
+manipulated an array
+```
+const myArray = ['I', 'love', 'chocolate', 'frogs'];
+const madeAString = myArray.join(' ');
+console.log(madeAString);
+// the join() function takes an array, joins
+// all the array items together into a single
+// string, and returns this new string
+```
+when we generate a random number
+```
+const myNumber = Math.random();
+// the random() function generates a random number between
+// 0 and up to but not including 1, and returns that number
+```
+
   
   
   
