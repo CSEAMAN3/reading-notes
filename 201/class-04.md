@@ -344,10 +344,80 @@ const myNumber = Math.random();
 // the random() function generates a random number between
 // 0 and up to but not including 1, and returns that number
 ```
+The JavaScript language has many built-in functions to allow you to do useful things without having to write all that code yourself. 
+
+#### Functions versus methods
+
+Functions that are part of objects are called methods.
+The built-in code we've made use of so far come in both forms: functions and methods. You can check the full list of the built-in functions, as well as the built-in objects and their corresponding methods here. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
+
+Anytime you saw a custom name with parentheses straight after it, you were using a custom function.
+Example 
+```
+function draw() {
+  ctx.clearRect(0,0,WIDTH,HEIGHT);
+  for (let i = 0; i < 100; i++) {
+    ctx.beginPath();
+    ctx.fillStyle = 'rgba(255,0,0,0.5)';
+    ctx.arc(random(WIDTH), random(HEIGHT), random(50), 0, 2 * Math.PI);
+    ctx.fill();
+  }
+}
+```
+This function draws 100 random circles inside a <canvas> element. Every time we want to do that, we can just invoke the function with this:
+```
+draw();
+```
+  
+functions can contain whatever code you like — you can even call other functions from inside functions. The above function for example calls the random() 
+function three times, which is defined by the following code:
+  
+```
+function random(number) {
+  return Math.floor(Math.random()*number);
+}
+```
+  
+#### Invoking functions
+  
+To actually use a function after it has been defined, you've got to run — or invoke — it. This is done by including the name of the function in the code somewhere, followed by parentheses.
+```
+  function myFunction() {
+  alert('hello');
+}
+
+myFunction();
+// calls the function once
+```
+Note: This form of creating a function is also known as function declaration. It is always hoisted, so you can call function above function definition and it will work fine.
+  
+#### Function parameters
+  
+Some functions require parameters to be specified when you are invoking them — these are values that need to be included inside the function parentheses.
+Note: Parameters are sometimes called arguments, properties, or even attributes.
+  
+Example:
+The browser's built-in Math.random() function doesn't require any parameters. When called, it always returns a random number between 0 and 1:
+```
+  const myNumber = Math.random();
+```
+The browser's built-in string replace() function however needs two parameters — the substring to find in the main string, and the substring to replace that string with:
+```
+const myText = 'I am a string';
+const newString = myText.replace('string', 'sausage');
+```
+####Optional parameters
+Sometimes parameters are optional — you don't have to specify them. If you don't, the function will generally adopt some kind of default behavior. As an example, the array join() function's parameter is optional:
+```
+const myArray = ['I', 'love', 'chocolate', 'frogs'];
+const madeAString = myArray.join(' ');
+console.log(madeAString);
+// returns 'I love chocolate frogs'
+
+const madeAnotherString = myArray.join();
+console.log(madeAnotherString);
+// returns 'I,love,chocolate,frogs'
+```
+If no parameter is included to specify a joining/delimiting character, a comma is used by default.
 
   
-  
-  
-  
-
-
