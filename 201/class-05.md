@@ -152,7 +152,7 @@ The best file type for a screenshot would be a jpeg. This is becuase it doesn't 
 The color property defines the foreground color of an HTML element's content and the background-color property defines the element's background color. These can be used on just about any element.
  
 ### Text
-property
+####Property
 
 Color - The color to use when drawing the text and any text decorations (such as the addition of under- or overlines, strike-through lines, and so forth.
  
@@ -165,8 +165,8 @@ text-emphasis-color - The color to use when drawing emphasis symbols adjacent to
 
 caret-color - The color to use when drawing the caret (sometimes referred to as the text input cursor) within the element. This is only useful in elements that are editable, such as <input> and <textarea> or elements whose HTML contenteditable attribute is set.
  
-#### Boxes
-property
+### Boxes
+####Property
 
 borders
  
@@ -174,11 +174,23 @@ background-color - The background color to use in areas of the element that have
 
 column-rule-color - The color to use when drawing the line separating columns of text.
 
+outline-color - The color to use when drawing an outline around the outside of the element. This outline is different from the border in that it doesn't get space set aside for it in the document (so it may overlap other content). It's generally used as a focus indicator, to show which element will receive input events.
  
+ ###Borders
+ ####Property
  
+border-color - Specifies a single color to use for every side of the element's border.
+
+border-left-color, border-right-color, border-top-color, and border-bottom-color
+Lets you set the color of the corresponding side of the element's border.
  
+border-block-start-color and border-block-end-color
+With these, you can set the color used to draw the borders which are closest to the start and end of the block the border surrounds. In a left-to-right writing mode (such as the way English is written), the block start border is the top edge and the block end is the bottom. This differs from the inline start and end, which are the left and right edges (corresponding to where each line of text in the box begins and ends).
  
+border-inline-start-color and border-inline-end-color
+These let you color the edges of the border closest to the beginning and the end of the start of lines of text within the box. Which side this is will vary depending on the writing-mode, direction, and text-orientation properties, which are typically (but not always) used to adjust text directionality based on the language being displayed. For example, if the box's text is being rendered right-to-left, then the border-inline-start-color is applied to the right side of the border.
  
+### Other ways to use color
  
  
  
