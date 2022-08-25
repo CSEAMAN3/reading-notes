@@ -524,7 +524,7 @@ scope — a very important concept when dealing with functions.
 When you create a function, the variables and other things defined inside the function are inside their own separate scope, meaning that they are locked away in their own separate compartments, unreachable from code outside the functions.
 The top level outside all your functions is called the global scope. Values defined in the global scope are accessible from everywhere in the code.
 
-#### Functoins Conclusion
+#### Functions Conclusion
 This article has explored the fundamental concepts behind functions, paving the way for the next one in which we get practical and take you through the steps to building up your own custom function.
   
   
