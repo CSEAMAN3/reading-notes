@@ -14,6 +14,9 @@ https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types
 Choosing Image Formats
 https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types#choosing_an_image_format
 
+Using color in CSS
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Colors/Applying_color
+
 
 ## Readings: Images, Color, Text
 
@@ -144,7 +147,42 @@ https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types
 The best file type for a screenshot would be a jpeg. This is becuase it doesn't have a transparent background or other memory intensive files. You would choose PNGs for graphics, files with transparent backgrounds, and other images where clarity and color vibrancy are important.
 
 
+#### Applying color to HTML elements using CSS
 
+The color property defines the foreground color of an HTML element's content and the background-color property defines the element's background color. These can be used on just about any element.
+ 
+### Text
+property
 
+Color - The color to use when drawing the text and any text decorations (such as the addition of under- or overlines, strike-through lines, and so forth.
+ 
+background-color - The text's background color.
+Text Shadow - Configures a shadow effect to apply to text. Among the options for the shadow is the shadow's base color (which is then blurred and blended with the background based on the other parameters). See Text drop shadows in Fundamental text and font styling to learn more.
+ 
+text-decoration-color - By default, text decorations (such as underlines, strikethroughs, etc.) use the color property as their colors. However, you can override that behavior and use a different color for them with the text-decoration-color property.
 
+text-emphasis-color - The color to use when drawing emphasis symbols adjacent to each character in the text. This is used primarily when drawing text for East Asian languages.
 
+caret-color - The color to use when drawing the caret (sometimes referred to as the text input cursor) within the element. This is only useful in elements that are editable, such as <input> and <textarea> or elements whose HTML contenteditable attribute is set.
+ 
+#### Boxes
+property
+
+borders
+ 
+background-color - The background color to use in areas of the element that have no foreground content.
+
+column-rule-color - The color to use when drawing the line separating columns of text.
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
