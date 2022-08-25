@@ -134,14 +134,14 @@ https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types
  Use the alt tags so screen reader can access them and describe the images to the user.
  Use figure and figcaption elements. 
  
-3) Provide an example of when the figure element would be useful in an HTML document.
+3) Provide an example of when the figure element would be useful in an HTML document?
  To semantically link the image to its caption for screen readers. 
  
 4) Describe the difference between a gif image and an svg image, pretend you are explaining to an elder in your community.
  A gif is designed for basic images and animations, an SVG allows simple graphics to be scalable as the computer will mathmatically work it out.
  
 5) What image type would you use to display a screenshot on your website and why?
-
+The best file type for a screenshot would be a jpeg. This is becuase it doesn't have a transparent background or other memory intensive files. You would choose PNGs for graphics, files with transparent backgrounds, and other images where clarity and color vibrancy are important.
 
 
 
