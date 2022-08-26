@@ -39,6 +39,8 @@ Open the terminal in VSCode by pressing control, shift, backtick.
 
 In the Terminal enter command git status. This will show the changes not staged for commit and untracked files.
 
+The next three commands are known as ACP = add, commit, push
+
 Enter git add . then git status. This will show changes to be commited.
 
 Enter git command -m "initial comment". This will show initial comment - your comment can be what you want it to be "created index.html" for example.
@@ -67,7 +69,30 @@ git branch name - this will create a branch called name - you can call it someth
 
 git checkout name - this will change you to the name branch. so the changes you're making are on the name branch.
 
-git checkout -b 
+step by step
+
+Enter command git checkout -b name (this will create a branch called name and put you into it). You can make name a suitable name for your project.
+
+Make your changes and test.
+
+Once happy enter commands ACP as normal accept when you push use git push -u origin name. 
+
+If you then make more changes just use ACP as normal.
+
+Go back to git hub and click on the name of the repository your working on.
+
+Click compare and pull request. A new page will open.
+
+Create pull request.
+
+Click merge pull requests.
+
+Back in Terminal.
+
+git checkout main
+
+git pull.
+
 
 
 
