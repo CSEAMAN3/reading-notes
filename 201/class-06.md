@@ -164,9 +164,25 @@ The Document Object Model (DOM) representation allows it to be manipulated. As a
 All of the properties, methods, and events available for manipulating and creating web pages are organized into objects. For example, the document object that represents the document itself, any table objects that implement the HTMLTableElement DOM interface for accessing HTML tables, and so forth, are all objects.
 
 #### DOM and JavaScript
+
 The DOM is not a programming language, but without it, the JavaScript language wouldn't have any model or notion of web pages, HTML documents, SVG documents, and their component parts. The document as a whole, the head, tables within the document, table headers, text within the table cells, and all other elements in a document are parts of the document object model for that document. They can all be accessed and manipulated using the DOM and a scripting language like JavaScript.
 
 The DOM was designed to be independent of any particular programming language, making the structural representation of the document available from a single, consistent API.
+
+#### Accessing the DOM
+
+You don't have to do anything special to begin using the DOM. You use the API directly in JavaScript from within what is called a script, a program run by a browser.
+
+#### Fundamental data types
+Follow link to see table
+https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction#fundamental_data_types
+
+#### DOM interfaces
+
+This guide is about the objects and the actual things you can use to manipulate the DOM hierarchy.
+
+
+
 
 
 
@@ -189,4 +205,15 @@ if an object property name is defined at runtime
 
 Evaluate the code below. What does the term this refer to and what is the advantage to using this?
 The keyword this is refering the the property key name inside of the object in which this is written. So this.name is refering to name inside of dog object.
+
+
+####
+javascript questions
+
+What is the DOM?
+The document object model. is a programming interface for web documents. It represents the page so that programs can change the document structure, style, and content
+
+Briefly describe the relationship between the DOM and JavaScript?
+The DOM defines the logical structure of documents and the way a document is accessed and manipulated. Javascript is the language used to manipulate it.
+
 
