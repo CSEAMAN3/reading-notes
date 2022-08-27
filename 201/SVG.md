@@ -1,6 +1,9 @@
 
 # How to Optimize and Export SVGs in Adobe Illustrator
 
+#### reference website
+https://www.sitepoint.com/crash-course-optimizing-and-exporting-svgs-in-adobe-illustrator/
+
 When you begin working with SVG, it is important to understand how to create, export, and optimize your SVG files for the browsers that 
 will render them.
 
