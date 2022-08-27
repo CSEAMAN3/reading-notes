@@ -160,11 +160,23 @@ problem in a follow up tutorial.
 
 TIP: It’s always a good idea to keep your original .ai file as your source, and then to export SVG copies with different settings from that parent file.
 
-When you choose Export As… command, in the appearing export dialog you may have noticed an additional option called Use Artboards. It becomes useful when you use multiple artboards—for example, when you create a set of icons—and you want each artboard to be exported as a separate SVG file.
-  
-  
+When you choose Export As… command, in the appearing export dialog you may have noticed an additional option called Use Artboards. It 
+becomes useful when you use multiple artboards—for example, when you create a set of icons—and you want each artboard to be exported as 
+a separate SVG file.
 
+a lot of optimization takes place during the creation and export of your SVG. However, you may want to further optimize your file with
+some specialized tool, such as SVGO or its web GUI-fied version SVGOMG.
 
+Be aware that you do need to be careful when using these tools. They can easily break your document functionality. My advice is to use 
+manual optimization whenever it’s possible and use automated optimization tool only if it’s necessary and with caution.
+
+### Conclusion
+  
+I don’t think I’m going out on a limb to pronounce SVG as the future of web vector graphics. It’s hard to see a situation where SVG 
+doesn’t continue to gain more power along the time. If you haven’t dived in yet, it will be good and wise investment to start learn it 
+now.
+
+We have SVG 2 appearing on the horizon with lots of powerful, new features to play with will. Exciting times ahead.
 
 
 
