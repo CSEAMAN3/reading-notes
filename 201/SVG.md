@@ -99,7 +99,48 @@ and hit Export button. You should see the following panel:
 
 <img width="403" alt="Screenshot 2022-08-27 at 20 59 24" src="https://user-images.githubusercontent.com/88540603/187046168-ac8c538b-340f-4cf8-a4c9-0d4e0c6c98f7.png">
 
+### Styling
 
+There are three way to style your SVG and they are presented in the first dropdown list.
+
+1) The first is to use internal CSS (i.e. a <style> block), which is generally considered the best option following the Separation of 
+Concerns principle.
+2) The second method is to use inline CSS styles (i.e. ).
+3) The third method is to use SVG presentation attributes.
+
+In the image below, you can see the difference between these three options.
+
+<img width="521" alt="Screenshot 2022-08-27 at 21 06 30" src="https://user-images.githubusercontent.com/88540603/187046375-3bbd7a14-c253-45f4-bc82-98d77fd86039.png">
+
+### Font
+  
+If you want to convert your text to outlines, here you can instruct Illustrator to do so. If you want to preserve your text
+editability, then select SVG option. Outlined text gives you complete visual control of your typography, but at a significant cost 
+- file sizes blow out and text loses editability and searchability.
+  
+Note: SVG fonts will be removed from SVG 2 and is considered as a deprecated feature with support being removed from browsers.
+  
+### Images
+
+Here you can choose how you treat any raster images in your SVG. You can choose to keep them as external files, or to embed them into 
+the SVG as DataURIs. Often Link is a useful choice as it makes the parent SVG file dramatically smaller and, as such, far more      
+manageable in your code editor.
+  
+However, the Embed option does have one great, overriding advantage: embedded images can never become unlinked/separated from their    
+‘parent SVG’. SVGs using linked resources will show the missing image icon the first time the SVG is downloaded, uploaded or moved 
+without its ‘child images’.
+  
+Keep this in mind if you require portability in your SVG.
+
+As a general rule, you’ll avoid many future headaches if you can simply avoid using pixel-based graphics in your SVGs whenever you can.
+  
+  
+  
+  
+  
+  
+  
+  
 
 
 
