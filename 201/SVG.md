@@ -179,5 +179,3 @@ now.
 We have SVG 2 appearing on the horizon with lots of powerful, new features to play with will. Exciting times ahead.
 
 
-
-
