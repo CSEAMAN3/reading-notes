@@ -134,11 +134,33 @@ Keep this in mind if you require portability in your SVG.
 
 As a general rule, you’ll avoid many future headaches if you can simply avoid using pixel-based graphics in your SVGs whenever you can.
   
+### Object IDs
   
+Generally the best option is to select Layer Names, because this will give you meaningful names for your individual SVG elements. Minimal uses random letter-numbers, and Unique uses large random combination of characters.
+
+<img width="388" alt="Screenshot 2022-08-27 at 21 18 34" src="https://user-images.githubusercontent.com/88540603/187046670-3981d9ac-45ce-4d04-81c5-05f25a8ef5fc.png">
+
+### Decimal
+ 
+This option defines how many decimal places your coordinates will have filled after the decimal point. Higher numbers means more 
+precise paths, while lowest number produces less verbose code and small file size.
+ 
+Keep in mind that we’re talking about 100ths and 1000ths of a pixel here. Higher values will only ever be necessary only if your 
+graphic is very small or requires incredible precision. In most cases, sticking to value of 1 decimal place – will be the best option.
   
+### Minify
   
+Check this option only if you’re exporting a final version of your graphic for production and you are sure that the file won’t be edited anymore.
   
+### Responsive
   
+In theory, this option removes the width and height attributes from your SVG document – making it more responsive. However, in most 
+cases, this is not enough to make your SVG truly responsive for all browsers and especially for IE. We’ll explore a fix for this 
+problem in a follow up tutorial.
+
+TIP: It’s always a good idea to keep your original .ai file as your source, and then to export SVG copies with different settings from that parent file.
+
+When you choose Export As… command, in the appearing export dialog you may have noticed an additional option called Use Artboards. It becomes useful when you use multiple artboards—for example, when you create a set of icons—and you want each artboard to be exported as a separate SVG file.
   
   
 
