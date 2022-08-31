@@ -70,8 +70,37 @@ HTML has a method of defining styling information for an entire column of data a
 can be a bit annoying and inefficient having to specify styling on columns — you generally have to specify your styling information on every <td> or <th> 
 in the column, or use a complex selector such as :nth-child
 
+#### Styling with <col>
 
-  
+Instead of doing this, we can specify the information once, on a <col> element. <col> elements are specified inside a <colgroup> container just below the opening <table> tag. We could create the same effect as we see above by specifying our table as follows:
+```
+ <table>
+  <colgroup>
+    <col>
+    <col style="background-color: yellow">
+  </colgroup>
+  <tr>
+    <th>Data 1</th>
+    <th>Data 2</th>
+  </tr>
+  <tr>
+    <td>Calcutta</td>
+    <td>Orange</td>
+  </tr>
+  <tr>
+    <td>Robots</td>
+    <td>Jazz</td>
+  </tr>
+</table>
+```
+If we wanted to apply the styling information to both columns, we could just include one <col> element with a span attribute on it, like this:
+```
+ <colgroup>
+  <col style="background-color: yellow" span="2">
+</colgroup>
+```
+Just like colspan and rowspan, span takes a unitless number value that specifies the number of columns you want the styling to apply to. 
+
 
 
 
