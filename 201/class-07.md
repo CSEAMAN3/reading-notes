@@ -40,9 +40,38 @@ the experience of sighted and visually impaired users alike.
 HTML tables should be used for tabular data — this is what they are designed for. Unfortunately, a lot of people used to use HTML tables to 
 lay out web pages, e.g. one row to contain the header, one row to contain the content columns, one row to contain the footer, etc.
 
+Layout tables reduce accessibility for visually impaired users
+Tables produce tag soup
+Tables are not automatically responsive
+
+The content of every table is enclosed by these two tags : <table></table>.
+The smallest container inside a table is a table cell, which is created by a <td> element ('td' stands for 'table data').
+To stop this row from growing and start placing subsequent cells on a second row, we need to use the <tr> element
+```
+ <table>
+   <tr>
+    <td>Hi, I'm your first cell.</td>
+    <td>I'm your second cell.</td>
+    <td>I'm your third cell.</td>
+    <td>I'm your fourth cell.</td>
+  </tr>
+ </table>
+```
+Each row needs to be wrapped in an additional <tr> element, with each cell contained in a <td>
+
+<th></th> are special cells that go at the start of a row or column and define the type of data that row or column contains.
+
+Table headers and cells have the colspan and rowspan attributes, which allow us to span multiply columns or rows. 
+For example, colspan="2" makes a cell span two columns.
+  
+#### Styling without <col>
+  
+HTML has a method of defining styling information for an entire column of data all in one place — the <col> and <colgroup> elements. These exist because it 
+can be a bit annoying and inefficient having to specify styling on columns — you generally have to specify your styling information on every <td> or <th> 
+in the column, or use a complex selector such as :nth-child
 
 
-
+  
 
 
 
