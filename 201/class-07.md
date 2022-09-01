@@ -6,6 +6,7 @@ Reference Links:
 https://github.com/codefellows/domain_modeling#domain-modeling
 https://developer.mozilla.org/en-US/docs/Learn/HTML/Tables/Basics
 https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics#introducing_constructors
+https://ui.dev/beginners-guide-to-javascript-prototype
 
 ### Domain Modelling
 Domain modeling is the process of creating a conceptual model in code for a specific problem.
@@ -185,7 +186,81 @@ Instead of performing a task by executing code, the constructor initializes the 
  
 How does the term this differ when used in an object literal versus when used in a constructor?
  
-In a constructor function this does not have a value. It is a substitute for the new object. The value of this will become the new object when a new object is created.
+In a constructor function this does not have a value. It is a substitute for the new object. The value of this will become the new object when a new  
+object is created.
+ 
+ 
+### Object Prototypes Using A Constructor
+
+Objects are key/value pairs. The most common way to create an object is with curly braces {} and you add properties and methods to an object using dot 
+notation.
+ 
+```
+let animal = {}
+animal.name = 'Leo'
+animal.energy = 10
+
+animal.eat = function (amount) {
+  console.log(`${this.name} is eating.`)
+  this.energy += amount
+}
+
+animal.sleep = function (length) {
+  console.log(`${this.name} is sleeping.`)
+  this.energy += length
+}
+
+animal.play = function (length) {
+  console.log(`${this.name} is playing.`)
+  this.energy -= length
+}
+```` 
+
+Now odds are in our application we'll need to create more than one animal. Naturally, the next step for this would be to encapsulate that logic inside of a function that we can invoke whenever we needed to create a new animal.
+ 
+We'll call this pattern Functional Instantiation and we'll call the function itself a "constructor function" since it's responsible for "constructing" a 
+new object.
+
+#### Functional Instantiation
+```
+ function Animal (name, energy) {
+  let animal = {}
+  animal.name = name
+  animal.energy = energy
+
+  animal.eat = function (amount) {
+    console.log(`${this.name} is eating.`)
+    this.energy += amount
+  }
+
+  animal.sleep = function (length) {
+    console.log(`${this.name} is sleeping.`)
+    this.energy += length
+  }
+
+  animal.play = function (length) {
+    console.log(`${this.name} is playing.`)
+    this.energy -= length
+  }
+
+  return animal
+}
+
+const leo = Animal('Leo', 7)
+const snoop = Animal('Snoop', 10)
+```
+
+
+ 
+ 
+ 
+ 
+Explain prototypes and inheritance via an analogy from your previous work experience.
+NOTE: This is a very common front end developer interview question
+ 
+
+ 
+
 
 
 
