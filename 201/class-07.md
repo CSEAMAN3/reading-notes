@@ -186,8 +186,8 @@ Instead of performing a task by executing code, the constructor initializes the 
  
 How does the term this differ when used in an object literal versus when used in a constructor?
  
-In a constructor function this does not have a value. It is a substitute for the new object. The value of this will become the new object when a new  
-object is created.
+In a constructor function this does not have a value. It is a substitute for the new object. The value of this will become the new 
+object when a new object is created.
  
  
 ### Object Prototypes Using A Constructor
@@ -257,6 +257,7 @@ const snoop = Animal('Snoop', 10)
  
 Explain prototypes and inheritance via an analogy from your previous work experience.
 NOTE: This is a very common front end developer interview question
+ 
  
 
  
