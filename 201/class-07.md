@@ -196,7 +196,7 @@ Objects are key/value pairs. The most common way to create an object is with cur
 notation.
  
 ```
-let animal = {}
+let animal = {
 animal.name = 'Leo'
 animal.energy = 10
 
@@ -224,7 +224,7 @@ new object.
 #### Functional Instantiation
 ```
  function Animal (name, energy) {
-  let animal = {}
+  let animal = {
   animal.name = name
   animal.energy = energy
 
@@ -249,8 +249,238 @@ new object.
 const leo = Animal('Leo', 7)
 const snoop = Animal('Snoop', 10)
 ```
+Now whenever we want to create a new animal (or more broadly speaking a new "instance"), all we have to do is invoke our Animal function, passing it the 
+animal's name and energy level. This works great and it's incredibly simple. However, can you spot any weaknesses with this pattern? The biggest and the 
+one we'll attempt to solve has to do with the three methods - eat, sleep, and play. Each of those methods are not only dynamic, but they're also 
+completely generic. What that means is that there's no reason to re-create those methods as we're currently doing whenever we create a new animal. We're 
+just wasting memory and making each animal object bigger than it needs to be. Can you think of a solution? What if instead of re-creating those methods 
+every time we create a new animal, we move them to their own object then we can have each animal reference that object? We can call this pattern 
+Functional Instantiation with Shared Methods
 
+#### Functional Instantiation with Shared Methods
+ 
+```
+ const animalMethods = {
+  eat(amount) {
+    console.log(`${this.name} is eating.`)
+    this.energy += amount
+  },
+  sleep(length) {
+    console.log(`${this.name} is sleeping.`)
+    this.energy += length
+  },
+  play(length) {
+    console.log(`${this.name} is playing.`)
+    this.energy -= length
+  }
+}
 
+function Animal (name, energy) {
+  let animal = {}
+  animal.name = name
+  animal.energy = energy
+  animal.eat = animalMethods.eat
+  animal.sleep = animalMethods.sleep
+  animal.play = animalMethods.play
+
+  return animal
+}
+
+const leo = Animal('Leo', 7)
+const snoop = Animal('Snoop', 10)
+```
+ 
+By moving the shared methods to their own object and referencing that object inside of our Animal function, we've now solved the problem of memory waste 
+and overly large animal objects.
+ 
+#### Object.create
+ 
+Let's improve our example once again by using Object.create. Simply put, Object.create allows you to create an object which will delegate to another 
+object on failed lookups. Put differently, Object.create allows you to create an object and whenever there's a failed property lookup on that object, it 
+can consult another object to see if that other object has the property.
+
+```
+const parent = {
+  name: 'Stacey',
+  age: 35,
+  heritage: 'Irish'
+}
+
+const child = Object.create(parent)
+child.name = 'Ryan'
+child.age = 7
+
+console.log(child.name) // Ryan
+console.log(child.age) // 7
+console.log(child.heritage) // Irish
+```
+ 
+So in the example above, because child was created with Object.create(parent), whenever there's a failed property lookup on child, JavaScript will 
+delegate that look up to the parent object. What that means is that even though child doesn't have a heritage property, parent does so when you log 
+child.heritage you'll get the parent's heritage which was Irish.
+
+Now with Object.create in our tool shed, how can we use it in order to simplify our Animal code from earlier? Well, instead of adding all the shared 
+methods to the animal one by one like we're doing now, we can use Object.create to delegate to the animalMethods object instead. To sound really smart, 
+let's call this one Functional Instantiation with Shared Methods and Object.create
+
+#### Functional Instantiation with Shared Methods and Object.create
+
+```
+ const animalMethods = {
+  eat(amount) {
+    console.log(`${this.name} is eating.`)
+    this.energy += amount
+  },
+  sleep(length) {
+    console.log(`${this.name} is sleeping.`)
+    this.energy += length
+  },
+  play(length) {
+    console.log(`${this.name} is playing.`)
+    this.energy -= length
+  }
+}
+
+function Animal (name, energy) {
+  let animal = Object.create(animalMethods)
+  animal.name = name
+  animal.energy = energy
+
+  return animal
+}
+
+const leo = Animal('Leo', 7)
+const snoop = Animal('Snoop', 10)
+
+leo.eat(10)
+snoop.play(5)
+```
+ 
+So now when we call leo.eat, JavaScript will look for the eat method on the leo object. That lookup will fail, then, because of Object.create, it'll 
+delegate to the animalMethods object which is where it'll find eat.
+ 
+here are still some improvements we can make though. It seems just a tad "hacky" to have to manage a separate object (animalMethods) in order to share 
+methods across instances. That seems like a common feature that you'd want to be implemented into the language itself. Turns out it is and it's the whole 
+reason you're here - prototype.
+
+So what exactly is prototype in JavaScript? Well, simply put, every function in JavaScript has a prototype property that references an object.
+
+```
+ function doThing () {}
+ console.log(doThing.prototype) // {}
+```
+ 
+What if instead of creating a separate object to manage our methods (like we're doing with animalMethods), we just put each of those methods on the Animal 
+function's prototype? Then all we would have to do is instead of using Object.create to delegate to animalMethods, we could use it to delegate to 
+Animal.prototype. We'll call this pattern Prototypal Instantiation.
+
+#### Prototypal Instantiation
+
+```
+ function Animal (name, energy) {
+  let animal = Object.create(Animal.prototype)
+  animal.name = name
+  animal.energy = energy
+
+  return animal
+}
+
+Animal.prototype.eat = function (amount) {
+  console.log(`${this.name} is eating.`)
+  this.energy += amount
+}
+
+Animal.prototype.sleep = function (length) {
+  console.log(`${this.name} is sleeping.`)
+  this.energy += length
+}
+
+Animal.prototype.play = function (length) {
+  console.log(`${this.name} is playing.`)
+  this.energy -= length
+}
+
+const leo = Animal('Leo', 7)
+const snoop = Animal('Snoop', 10)
+
+leo.eat(10)
+snoop.play(5)
+```
+ 
+prototype is just a property that every function in JavaScript has and, as we saw above, it allows us to share methods across all instances of a function. 
+All our functionality is still the same but now instead of having to manage a separate object for all the methods, we can just use another object that 
+comes built into the Animal function itself, Animal.prototype.
+
+### Let's. Go. Deeper.
+ 
+At this point we know three things:
+1) How to create a constructor function.
+2) How to add methods to the constructor function's prototype.
+3) How to use Object.create to delegate failed lookups to the function's prototype.
+
+Those three tasks seem pretty foundational to any programming language. Is JavaScript really that bad that there's no easier, "built-in" way to accomplish 
+the same thing? As you can probably guess at this point there is, and it's by using the new keyword.
+ 
+What's nice about the slow, methodical approach we took to get here is you'll now have a deep understanding of exactly what the new keyword in JavaScript 
+is doing under the hood.
+ 
+Looking back at our Animal constructor, the two most important parts were creating the object and returning it. Without creating the object with 
+Object.create, we wouldn't be able to delegate to the function's prototype on failed lookups. Without the return statement, we wouldn't ever get back the 
+created object.
+
+```
+ function Animal (name, energy) {
+  let animal = Object.create(Animal.prototype)
+  animal.name = name
+  animal.energy = energy
+
+  return animal
+}
+```
+ 
+when you invoke a function using the new keyword, those two lines are done for you implicitly ("under the hood") and the object that is created is called 
+this.
+ 
+Using comments to show what happens under the hood and assuming the Animal constructor is called with the new keyword, it can be re-written as this.
+ 
+```
+ function Animal (name, energy) {
+  // const this = Object.create(Animal.prototype)
+
+  this.name = name
+  this.energy = energy
+
+  // return this
+}
+
+const leo = new Animal('Leo', 7)
+const snoop = new Animal('Snoop', 10)
+and without the "under the hood" comments
+
+function Animal (name, energy) {
+  this.name = name
+  this.energy = energy
+}
+
+Animal.prototype.eat = function (amount) {
+  console.log(`${this.name} is eating.`)
+  this.energy += amount
+}
+
+Animal.prototype.sleep = function (length) {
+  console.log(`${this.name} is sleeping.`)
+  this.energy += length
+}
+
+Animal.prototype.play = function (length) {
+  console.log(`${this.name} is playing.`)
+  this.energy -= length
+}
+
+const leo = new Animal('Leo', 7)
+const snoop = new Animal('Snoop', 10)
+```
+ 
  
  
  
