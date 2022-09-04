@@ -50,10 +50,122 @@ The first method to combine work that we will examine is git merge. Merging in G
 unique parents. A commit with two parents essentially means "I want to include all the work from this parent over here and this 
 one over here, and the set of all their parents."
 
+to merge we type:
+git merge name-of-branch
 
+Let's merge main into bugFix:
+git checkout name-of-branch; git merge main
 
+name-of-branch was an ancestor of main, git didn't have to do any work; it simply just moved name-of-branch to the same commit main 
+was attached to. Now all the commits are the same, which means each branch contains all the work in the repository! Woohoo!
 
+To complete this level, do the following steps:
 
+Make a new branch called bugFix
+Checkout the bugFix branch with git checkout bugFix
+Commit once
+Go back to main with git checkout
+Commit another time
+Merge the branch bugFix into main with git merge
+
+#### Git Rebase
+
+The second way of combining work between branches is rebasing. Rebasing essentially takes a set of commits, "copies" them, and plops 
+them down somewhere else. While this sounds confusing, the advantage of rebasing is that it can be used to make a nice linear sequence
+of commits. The commit log / history of the repository will be a lot cleaner if only rebasing is allowed.
+
+git rebase main
+
+Now the work from our name-of-branch branch is right on top of main and we have a nice linear sequence of commits.
+Note that the commit C3 still exists somewhere (it has a faded appearance in the tree), and C3' is the "copy" that we rebased onto 
+main. The only problem is that main hasn't been updated either, let's do that now...
+
+Now we are checked out on the main branch. Let's go ahead and rebase onto name-of-branch...
+
+git rebase name-of-branch
+
+Since main was an ancestor of name-of-branch, git simply moved the main branch reference forward in history.
+
+Checkout a new branch named bugFix
+Commit once
+Go back to main and commit again
+Check out bugFix again and rebase onto main
+
+#### Moving around in Git
+
+it's important to understand different ways to move through the commit tree that represents your project. Once you're comfortable 
+moving around, your powers with other git commands will be amplified!
+
+First we have to talk about "HEAD". HEAD is the symbolic name for the currently checked out commit -- it's essentially what 
+commit you're working on top of.
+
+HEAD always points to the most recent commit which is reflected in the working tree. Most git commands which make changes to the 
+working tree will start by changing HEAD.
+
+Normally HEAD points to a branch name (like bugFix). When you commit, the status of bugFix is altered and this change is visible 
+through HEAD.
+
+Detaching HEAD just means attaching it to a commit instead of a branch.
+
+git checkout c1
+git checkout main
+git commit
+git checkout c2
+
+#### Relative Refs
+
+Moving around in Git by specifying commit hashes can get a bit tedious. In the real world you won't have a nice commit tree 
+visualization next to your terminal, so you'll have to use git log to see hashes.
+
+Furthermore, hashes are usually a lot longer in the real Git world as well. For instance, the hash of the commit that introduced 
+the previous level is fed2da64c0efc5293610bdd892f82a58e8cbc5d8. Doesn't exactly roll off the tongue...
+
+The upside is that Git is smart about hashes. It only requires you to specify enough characters of the hash until it uniquely 
+identifies the commit. So I can type fed2 instead of the long string above.
+
+Specifying commits by their hash isn't the most convenient thing ever, which is why Git has relative refs. They are awesome!
+
+With relative refs, you can start somewhere memorable (like the branch bugFix or HEAD) and work from there.
+
+Relative commits are powerful, but we will introduce two simple ones here:
+
+Moving upwards one commit at a time with ^
+Moving upwards a number of times with ~<num>
+
+Let's look at the Caret (^) operator first. Each time you append that to a ref name, you are telling Git to find the parent of the 
+specified commit.
+
+So saying main^ is equivalent to "the first parent of main".
+
+main^^ is the grandparent (second-generation ancestor) of main
+
+You can also reference HEAD as a relative ref. Let's use that a couple of times to move upwards in the commit tree.
+
+git checkout C3
+git checkout HEAD^
+git checkout HEAD^
+git checkout HEAD^
+
+Easy! We can travel backwards in time with. We are at commit 3 the first HEAD^ moves us back to commit 2 the next to commit 1 and the 
+third to commit 0.
+
+#### The "~" operator
+
+Say you want to move a lot of levels up in the commit tree. It might be tedious to type ^ several times, so Git also has the 
+tilde (~) operator.
+
+The tilde operator (optionally) takes in a trailing number that specifies the number of parents you would like to ascend. 
+Lets spicify a number of commits back with ~.
+git checkout HEAD~4
+
+#### Branch Forcing
+
+One of the most common ways I use relative refs is to move branches around. You can directly reassign a branch to a commit with 
+the -f option. So something like:
+
+git branch -f main HEAD~3
+
+moves (by force) the main branch to three parents behind HEAD.
 
 
 
