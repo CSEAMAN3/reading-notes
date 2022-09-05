@@ -480,13 +480,76 @@ Animal.prototype.play = function (length) {
 const leo = new Animal('Leo', 7)
 const snoop = new Animal('Snoop', 10)
 ```
+Again the reason this works and that the this object is created for us is because we called the constructor function with the new keyword. If you leave 
+off new when you invoke the function, that this object never gets created nor does it get implicitly returned. We can see the issue with this in the 
+example below.
  
+```
+ function Animal (name, energy) {
+  this.name = name
+  this.energy = energy
+}
+
+const leo = Animal('Leo', 7)
+console.log(leo) // undefined
+```
  
+The name for this pattern is Pseudoclassical Instantiation.
+
+If JavaScript isn't your first programming language, you might be getting a little restless.
  
+For those unfamiliar, a Class allows you to create a blueprint for an object. Then whenever you create an instance of that Class, you get an object with 
+the properties and methods defined in the blueprint.
+
+Sound familiar? That's basically what we did with our Animal constructor function above. However, instead of using the class keyword, we just used a 
+regular old JavaScript function to re-create the same functionality. Granted, it took a little extra work as well as some knowledge about what happens
+"under the hood" of JavaScript but the results are the same.
+ 
+Here's the good news. JavaScript isn't a dead language. It's constantly being improved and added to by the TC-39 committee. What that means is that even 
+though the initial version of JavaScript didn't support classes, there's no reason they can't be added to the official specification. In fact, that's 
+exactly what the TC-39 committee did. In 2015, EcmaScript (the official JavaScript specification) 6 was released with support for Classes and the class
+keyword. Let's see how our Animal constructor function above would look like with the new class syntax.
+
+```
+ class Animal {
+  constructor(name, energy) {
+    this.name = name
+    this.energy = energy
+  }
+  eat(amount) {
+    console.log(`${this.name} is eating.`)
+    this.energy += amount
+  }
+  sleep(length) {
+    console.log(`${this.name} is sleeping.`)
+    this.energy += length
+  }
+  play(length) {
+    console.log(`${this.name} is playing.`)
+    this.energy -= length
+  }
+}
+
+const leo = new Animal('Leo', 7)
+const snoop = new Animal('Snoop', 10)
+```
+ 
+So if this is the new way to create classes, why did we spend so much time going over the old way? The reason for that is because the new way (with the 
+class keyword) is primarily just "syntactical sugar" over the existing way we've called the pseudo-classical pattern. In order to fully understand the 
+convenience syntax of ES6 classes, you first must understand the pseudo-classical pattern.
+
+### Array Methods
+ 
+
  
  
 Explain prototypes and inheritance via an analogy from your previous work experience.
 NOTE: This is a very common front end developer interview question
+Javascript prototype inheritance refers to the ability to access object properties from another object. We use a JavaScript prototype to add new 
+properties and methods to an existing object constructor. We can then essentially tell our JS code to inherit properties from a prototype. We did this in 
+our salmon cookies website we createad several prototypes methods; to calculate the customers each hour, calculate the cookies each hour, a render 
+function. All our protypes woked together to render out the data we required into a table onto the page.
+
  
  
 
