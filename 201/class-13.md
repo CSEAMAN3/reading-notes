@@ -1,7 +1,8 @@
 # Local Storage and How To Use It On Websites
 
-#### Reference
+#### Reference Links
 https://www.smashingmagazine.com/2010/10/local-storage-and-how-to-use-it/
+http://diveinto.html5doctor.com/storage.html
 
 Local storage is how we store information locally on a user’s computer.
 
