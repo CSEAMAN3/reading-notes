@@ -122,7 +122,9 @@ css
 
 #### Transform Syntax
 
+
 The actual syntax for the transform property is quite simple, including the transform property followed by the value.
+
 The value specifies the transform type followed by a specific amount inside parentheses.
 
 ```
@@ -148,7 +150,9 @@ Three-dimensional transforms work on both the x and y axes, as well as the z axi
 
 These three-dimensional transforms help define not only the length and width of an element, but also the depth.
 
+
 #### Transform Rotate
+
 
 The rotate value provides the ability to rotate an element from 0 to 360 degrees. 
 
@@ -158,7 +162,9 @@ Using a negative value will rotate the element counterclockwise.
 
 The default point of rotation is the center of the element, 50% 50%, both horizontally and vertically.
 
+
 #### Transform Scale
+
 
 The scale value within the transform property allows you to change the appeared size of an element. 
 
@@ -179,7 +185,9 @@ To scale both the height and width of an element but at different sizes, the x a
 
 To do so, use the scale transform declaring the x axis value first, followed by a comma, and then the y axis value.
 
+
 #### Translate
+
 
 The translate value works a bit like that of relative positioning, 
 
@@ -206,7 +214,9 @@ Positive values will push an element down and to the right of its default positi
 
 Negative values will pull an element up and to the left of its default position.
 
+
 #### Skew
+
 
 Skew, is used to distort elements on the horizontal axis, vertical axis, or both. 
 
