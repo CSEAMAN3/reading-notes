@@ -30,7 +30,7 @@ css
 }
 ```
 
-####### Scale
+###### Scale
 
 css
 ```
