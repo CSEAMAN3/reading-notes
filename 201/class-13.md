@@ -57,4 +57,16 @@ var taste = localStorage.getItem('favoriteflavor');
 ```
 
 
+#### Questions
+
+1) Why would a developer use local storage for a web application?
+LocalStorage is a property that allows JavaScript sites and apps to save key-value pairs in a web browser with no expiration date. This means the data stored in the browser will persist even after the browser window is closed.
+
+2) What information should not be stored in local storage?
+Do not store passwords or personal information in local storage as it is not secure.
+
+3) Local storage can store what type of data? How would you convert it to that type before storing?
+Local storage can only store data as a string. You can convert data to a string using JSON.stringify and convert it back when called using JSON.parse.
+
+
 
