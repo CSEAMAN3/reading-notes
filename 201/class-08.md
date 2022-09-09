@@ -13,7 +13,9 @@ It excels at taking a bunch of items which have different sizes, and returning t
 
 #### The main axis and the cross axis
 
-The main axis is the one set by your flex-direction property. If that is row your main axis is along the row, if it is column your main axis is along the column.
+The main axis is the one set by your flex-direction property. 
+
+If that is row your main axis is along the row, if it is column your main axis is along the column.
 
 
 
