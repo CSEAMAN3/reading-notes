@@ -122,3 +122,137 @@ The same thinking applies to perspective depth values.
   transform: perspective(1000px) rotateX(45deg);
 }
 ```
+
+#### Perspective origin
+
+Like transform-origin you can also set a perspective-origin.
+
+The same values used for the transform-origin property may also be used with the perspective-origin property. 
+
+The difference between the two is where the origin of a transform determines the coordinates used to calculate
+
+the change of a transform, while the origin of a perspective identifies the coordinates of the vanishing point of a transform.
+
+```
+.original {
+  perspective: 200px;
+}
+.box {
+  transform: rotateX(45deg);
+}
+.original-1 {
+  perspective-origin: 0 0;
+}
+.original-2 {
+  perspective-origin: 75% 75%;
+}
+.original-3 {
+  perspective-origin: 20px 40px;
+}
+```
+
+#### 3D Transform
+
+Working with two-dimensional transforms we are able to alter elements on the horizontal and vertical axes.
+
+Using three-dimensional transforms we can change elements on the z axis, giving us control of depth as well as length and width.
+
+###### 3D Rotate
+
+With three-dimensional transforms we can rotate an element around any axes. 
+
+To do so, we use three new transform values, including rotateX, rotateY, and rotateZ.
+
+rotateX value allows you to rotate an element around the x axis, as if it were being bent in half horizontally. 
+
+rotateY value allows you to rotate an element around the y axis, as if it were being bent in half vertically.
+
+rotateZ value allows an element to be rotated around the z axis.
+
+Positive values will rotate the element around its dedicated axis clockwise.
+
+Negative values will rotate the element counterclockwise.
+
+```
+.box-1 {
+  transform: perspective(200px) rotateX(45deg);
+}
+.box-2 {
+  transform: perspective(200px) rotateY(45deg);
+}
+.box-3 {
+  transform: perspective(200px) rotateZ(45deg);
+}
+```
+
+#### 3D scale
+
+Using the scaleZ three-dimensional transform elements may be scaled on the z axis. 
+
+This isn’t extremely exciting when no other three-dimensional transforms are in place, as there is nothing in particular to scale. 
+
+In the demonstration below the elements are being scaled up and down on the z axis.
+
+The rotateX value is added in order to see the behavior of the scaleZ value. 
+
+When removing the rotateX in this case, the elements will appear to be unchanged.
+
+```
+.box-1 {
+  transform: perspective(200px) scaleZ(1.75) rotateX(45deg);
+}
+.box-2 {
+  transform: perspective(200px) scaleZ(.25) rotateX(45deg);
+}
+```
+
+#### 3D Transform
+
+Elements may also be translated on the z axis using the translateZ value. 
+
+A negative value here will push an element further away on the z axis, resulting in a smaller element. 
+
+Using a positive value will pull an element closer on the z axis, resulting in a larger element.
+
+The transform is taking place on the z axis, not the x or y axes. 
+
+```
+.box-1 {
+  transform: perspective(200px) translateZ(-50px);
+}
+.box-2 {
+  transform: perspective(200px) translateZ(50px);
+}
+```
+
+#### 3D Skew
+
+Skew is the one two-dimensional transform that cannot be transformed on a three-dimensional scale. 
+
+Elements may be skewed on the x and y axis, then transformed three-dimensionally as wished.
+
+They cannot be skewed on the z axis.
+
+#### Shorthand 3D Transforms
+
+There are properties to write out shorthand three-dimensional transforms. 
+
+These properties include rotate3d, scale3d, transition3d, and matrix3d. 
+
+These properties require a bit more math and a strong understanding of the matrices behind each transform.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
