@@ -255,11 +255,85 @@ The preserve-3d value allows the transformed children elements to appear in thei
 
 plane while the flat value forces the transformed children elements to lie flat on the two-dimensional plane.
 
+```
+.rotate {
+  transform: perspective(200px) rotateY(45deg);
+}
+.three-d {
+  transform-style: preserve-3d;
+}
+.box {
+  transform: rotateX(15deg) translateZ(20px);
+  transform-origin: 0 0;
+}
+```
 
+#### Backface Visibility
 
+When working with three-dimensional transforms, elements will occasionally be transformed in a way that causes them to face away from the screen.
 
+This may be caused by setting the rotateY(180deg) value for example. 
 
+By default these elements are shown from the back. So if you prefer not to see these elements at all, set the backface-visibility property to hidden, and 
+you will hide the element whenever it is facing away from the screen.
 
+The other value to backface-visibility is visible which is the default value, always displaying an element, no matter which direction it faces.
+
+In the demonstration below notice how the second box isn’t displayed because backface-visibility: hidden; declaration has been set. The backface-
+visibility property takes even more significance when using animations.
+
+```
+.box-1 {
+  transform: rotateY(180deg);
+}
+.box-2 {
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+}
+```
+
+#### 3D Cube Demo
+
+```
+.cube-container {
+  height: 200px;
+  perspective: 300;
+  position: relative;
+  width: 200px;
+}
+.cube {  
+  height: 100%;
+  position: absolute;
+  transform: translateZ(-100px);
+  transform-style: preserve-3d;
+  width: 100%;
+}
+.side {
+  background: rgba(45, 179, 74, .3);
+  border: 2px solid #2db34a;
+  height: 196px;
+  position: absolute;
+  width: 196px;
+}
+.front {
+  transform: translateZ(100px);
+}
+.back {
+  transform: rotateX(180deg) translateZ(100px);
+}
+.left {
+  transform: rotateY(-90deg) translateZ(100px);
+}
+.right {
+  transform: rotateY(90deg) translateZ(100px);
+}
+.top {
+  transform: rotateX(90deg) translateZ(100px);
+}
+.bottom {
+  transform: rotateX(-90deg) translateZ(100px);
+}
+```
 
 
 
