@@ -241,9 +241,19 @@ These properties include rotate3d, scale3d, transition3d, and matrix3d.
 
 These properties require a bit more math and a strong understanding of the matrices behind each transform.
 
+### Transform Style
 
+On occasion three-dimensional transforms will be applied on an element that is nested within a parent element which is also being transformed.
 
+In this event, the nested, transformed elements will not appear in their own three-dimensional space. 
 
+To allow nested elements to transform in their own three-dimensional plane use the transform-style property with the preserve-3d value.
+
+The transform-style property needs to be placed on the parent element, above any nested transforms.
+
+The preserve-3d value allows the transformed children elements to appear in their own three-dimensional 
+
+plane while the flat value forces the transformed children elements to lie flat on the two-dimensional plane.
 
 
 
