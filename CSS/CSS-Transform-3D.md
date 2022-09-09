@@ -114,11 +114,11 @@ The same thinking applies to perspective depth values.
 
 ###### Example
 
-,,,
+```
 .box-1 {
   transform: perspective(100px) rotateX(45deg);
 }
 .box-2 {
   transform: perspective(1000px) rotateX(45deg);
 }
-,,,
+```
