@@ -193,4 +193,18 @@ select {
    You need to be cautious when setting reverse-row and reverse-column. These will change the visual order only. 
    Therefore a screen reader will still follow the order as written in the HTML document.
    
+   
+1) What are some advantages of using flexbox over float?
+  
+  Flexbox is responsive and mobile friendly.
+  
+  Flex container’s margins do not collapse with the margins of its content.
+  
+  Positioning child elements becomes easier with flexbox.
+  
+  We can easily change the order of elements on our webpage without even making changes in HTML.
+
+2) How does this topic connect with your long term goals?
+
+  Undeestanding layout positioning and flex is extremely important for building websites and software development. It's   to essential for me to have an understanding of these concepts to be successful as a developer.
   
