@@ -54,11 +54,20 @@ let sum2 = (a, b) => a + b
 A named function with one parameter.
 ```
   function isPositive(number){
-    return number >= 0
+    return number >= 0    
   }
   
+<!-- Again we remove the function keyword and set isPositive to a variable -->
+<!-- Set the variable = to the parentheses (number) -->
+<!-- Include the arrow after the parentheses -->
+
+let isPositive = (number) => {
+    return number >= 0    
+  }
   
-  
+<!-- again we can reduce this further by removing the return and the curly braces and placing onto one line -->
+
+let isPositive = (number) => number >= 0
 ```
 
 A named function with no parementers
