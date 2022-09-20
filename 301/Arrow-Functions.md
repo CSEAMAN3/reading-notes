@@ -33,7 +33,7 @@ A named function with multiple parameters.
   }
   
 <!-- convert to arrow function -->
-<!-- remove the function key word, with an arrow function the function keyword is assumed -->
+<!-- remove the function key word. With an arrow function the function keyword is assumed -->
 <!-- We need to assign the function to a variable either let or const -->
 <!-- Set the variable = to the parentheses -->
 <!-- next add the arrow to denote this is a function followed by the body syntax of the function in curly braces -->
