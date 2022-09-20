@@ -69,7 +69,7 @@ let isPositive = (number) => {
 
 let isPositive2 = (number) => number >= 0
 
-<!-- Also when we only have 1 parameter we can remove the parentheses from around the parameter -->
+<!-- Also, when we only have 1 parameter, we can remove the parentheses from around the parameter -->
 
 let isPositive3 = number => number >= 0
 
