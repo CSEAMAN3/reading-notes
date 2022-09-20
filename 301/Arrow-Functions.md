@@ -24,7 +24,7 @@ Arrow functions cannot be used as constructors.
 
 Arrow functions cannot use yield, within its body.
 
-Example functions changed to arrow functions
+#### Example functions changed to arrow functions
 
 A named function with multiple parameters.
 ```
