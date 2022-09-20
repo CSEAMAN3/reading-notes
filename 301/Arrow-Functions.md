@@ -67,7 +67,12 @@ let isPositive = (number) => {
   
 <!-- again we can reduce this further by removing the return and the curly braces and placing onto one line -->
 
-let isPositive = (number) => number >= 0
+let isPositive2 = (number) => number >= 0
+
+<!-- Also when we only have 1 parameter we can remove the parentheses from around the parameter -->
+
+let isPositive3 = number => number >= 0
+
 ```
 
 A named function with no parementers
