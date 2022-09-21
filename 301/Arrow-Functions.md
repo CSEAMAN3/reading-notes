@@ -112,6 +112,36 @@ An anonymous function - a function with no name. This is where arrow functions r
 
 ```
 
+To summerise:
+
+With one parameter the parentheses are not needed. 
+
+Simple expression return on one line the word "return" is not needed
+
+param => expression
+
+Multiple parameters require parentheses.
+
+(param1, param2) => expression
+
+Multiline statements require body braces and return
+
+param => {
+  const a = 1
+  return a + param
+}
+
+Multiple parameters require parenthese and Multiline statements require body braces and return
+
+(param1, param2) => {
+  const a = 1
+  return a + param1 + param2
+}
+
+
+
+
+
 ### Arrow functions Re-defining the this keyword
 
 What really makes arrow funcitons important is that they re-define the this keyword inside of them as opposed to normal functions.
