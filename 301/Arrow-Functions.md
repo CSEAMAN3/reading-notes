@@ -80,13 +80,44 @@ A named function with no parementers
   function randomNumber(){
     return Math.random
   }
+
+<!-- Again remove the keyword function  replace it with a variable -->
+<!-- assign it equal to empty parentheses -->
+<!-- place the arrow after the parentheses followed by the curly braces and the body syntax of the function -->
+
+  let randomNumber2 = () => {
+    return Math.random
+  }
+  
+<!-- Again we can remove the return and the curly braces then place eveything onto one line -->
+
+let randomNumber3 = () => Math.random
 ```
 
-An anonymous function - a function with no name. 
+An anonymous function - a function with no name. This is where arrow functions really shine!
 ```
-  document.addEventListener("click", function){
+  document.addEventListener("click", function(){
     console.log("click")
-  }
+  })
+  
+<!-- We remove the keyword function and add our arrow function after the parentheses -->
+
+  document.addEventListener("click", () => {
+    console.log("click")
+  })
+  
+<!-- we can also put this onto one line by removing the curly braces-->
+
+  document.addEventListener("click", () => console.log("click"))
+
 ```
+
+### Arrow functions Re-defining the this keyword
+
+What really makes arrow funcitons important is that they re-define the this keyword inside of them as opposed to normal functions.
+
+
+
+
 
 
