@@ -139,9 +139,6 @@ Multiple parameters require parenthese and Multiline statements require body bra
 }
 
 
-
-
-
 ### Arrow functions Re-defining the this keyword
 
 What really makes arrow funcitons important is that they re-define the this keyword inside of them as opposed to normal functions.
@@ -151,6 +148,23 @@ A normal standard function for javascript re-defines the "this" keyword. So this
 An arrow function for javascript does not re-define the "this" keyword. So say an arrow function inside a constructor function can call "this.name" (for example) that has been declared inside the constructor as the arrow function will look at the scope in which the function was defined.
 
 
+### Arrow funcrions used as methods
+
+Arrow functions are best suited for non-method functions.
+
+### call, apply and bind
+
+The call, apply and bind methods are not suitable as arrow functions as they were designed to allow methods to execute with different scopes.
+
+call, apply and bind work as expected with traditional functions, because we establish the scope for each of the methods.
+
+### Use of the new operator
+
+Arrow functions cannot be used as constructors and will throw an error when used with new.
+
+### Use of prototype property
+
+Arrow functions do not have a prototype property.
 
 
 
