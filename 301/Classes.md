@@ -47,7 +47,7 @@ This is called inheritance.
 
 Example: 
 
-,,,
+```
 
 // lets make an animal class using a constructor function
 
@@ -70,7 +70,7 @@ Animal.prototype.walk = function(){
 
 let puppy = new Animal("blake", 4)
 
-,,,
+```
 
 If we console.log(puppy)
 
@@ -92,7 +92,7 @@ The prototype method allowed us to add this new behaviour.
 
 Next we'll add an eat function as a method inside our constructor:
 
-,,,
+```
 
 // lets make an animal class using a constructor function
 
@@ -119,7 +119,7 @@ Animal.prototype.walk = function(){
 
 let puppy = new Animal("blake", 4)
 
-,,,
+```
 
 If we console.log(puppy)
 
