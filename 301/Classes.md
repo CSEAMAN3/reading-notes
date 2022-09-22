@@ -216,7 +216,7 @@ The re-write:
 ```
 //We start by making a new class
 
-class = Animal {
+class Animal {
 
 //The constructor for the class takes in a name and legs
 
