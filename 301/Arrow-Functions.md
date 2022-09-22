@@ -146,6 +146,10 @@ Multiple parameters require parenthese and Multiline statements require body bra
 
 What really makes arrow funcitons important is that they re-define the this keyword inside of them as opposed to normal functions.
 
+A normal standard function for javascript re-defines the "this" keyword. So this has to be defined in the scope of the function to be used.
+
+An arrow function for javascript does not re-define the "this" keyword. So say an arrow function inside a constructor function can call "this.name" (for example) that has been declared inside the constructor as the arrow function will look at the scope in which the function was defined.
+
 
 
 
