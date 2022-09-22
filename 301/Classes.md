@@ -138,6 +138,7 @@ console.log(puppy)
 ```
 now in the console we will have:
 
+```
 Animal {
   name: "blake",
   legs: 4,
@@ -145,6 +146,7 @@ Animal {
   isWalking: true,
   isEating: true
   }
+  
 ```
 The two properties (eat and walk) were set on puppy by the invocation of those methods on this instance of an animal.
 
