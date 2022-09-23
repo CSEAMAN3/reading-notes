@@ -361,14 +361,55 @@ Dog {
  }
 woof!
 
-```
 
 ### Scrimba
 
+Classes have a constructor method. To use this we type the constructor keyword.
 
+Remember methods are functions so we need () and {}.
 
+Example:
 
+```
+class Module {
 
+ constructor(){
+ 
+ }
+ 
+}
+
+```
+
+The constructor is used to initialize the object we're creating with its properties.
+
+Classes can have as many methods as we want. But anything we might later use in the method should be set up in the constructor first.
+
+Exmaple of constructor with properties:
+
+```
+
+class Module {
+
+ constructor(){
+  this.courseName = "Learn JS"
+  this.studentsEnrolled = 5600
+  this.studentsCompleted = 5100
+ }
+
+}
+
+// we then create a new instance of Module
+
+const learnJs = new Module
+console.log(learnJs.studentsEnrolled)
+
+// The console will log 5600
+
+```
+
+Object.assign(target, source)
+Object.assign(this, data)
 
 
 
