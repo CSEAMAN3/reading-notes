@@ -17,7 +17,7 @@ function Header() {
     return (
         <header>
             <nav>
-                <img src="./react-logo.png" width="40px" />
+                <img src="./react-logo.png" alt="logo" />
                 <ul>
                     <li>Pricing</li>
                     <li>About</li>
@@ -102,7 +102,7 @@ function Header() {
     return (
         <header>
             <nav className="header-nav">
-                <img src="./react-logo.png" width="40px" />
+                <img className="logo-img" src="./react-logo.png" width="40px" />
                 <ul className="nav-items">
                     <li className="nav-list-item">Pricing</li>
                     <li className="nav-list-item">About</li>
@@ -152,21 +152,25 @@ ReactDOM.render(<Page />, document.getElementById("root"))
 style.css
 ```
 
-.header-nav{
-    display: flex;
-    justify-content:  space-between;
-    align-items: center;
+.logo-img{
+    width: 40px;
+    height: auto;
+    display: block;
 }
 
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 .nav-items {
     list-style: none;
     display: flex;
 }
 
-.nav-list-item{
-    margin-left: 1rem;
-    cursor: pointer;
+.nav-items > li {
+    padding: 10px;
 }
 
 
