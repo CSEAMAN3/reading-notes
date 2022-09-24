@@ -19,7 +19,7 @@ When you use class and extends keyword internally JavaScript will still use prot
 
 However it will simplify the syntax.
 
-While classes are easier to use it is still i,portant to understand how prototype inheritance works as it is at the
+While classes are easier to use it is still important to understand how prototype inheritance works as it is at the
 
 core of the language design.
 
