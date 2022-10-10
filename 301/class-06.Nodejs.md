@@ -13,7 +13,7 @@ https://www.npmjs.com/package/axios
 https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Promises
 
 
-### Questions
+##### Questions
 
 What is node.js?
 
@@ -40,7 +40,7 @@ What command would you type to install a library/package called ‘jshint’?
 What is node used for?
 
 
-### Questions - pair programming
+##### Questions - pair programming
 
 What are the 6 reasons for pair programming?
 
@@ -49,6 +49,14 @@ In your experience, which of these reasons have you found most beneficial?
 
 
 How does pair programming work?
+
+
+
+### Reading Notes
+
+Node Js lets us run Javascript on the server.
+
+
 
 
 
