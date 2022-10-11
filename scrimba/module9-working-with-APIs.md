@@ -361,8 +361,143 @@ fetch("https://apis.scrimba.com/jsonplaceholder/posts")
     .then(data => console.log(data))
 ```
 
+###### Quiz
+ 
+ 1) What does HTTP stand for?
 
+ a. HyperText Transfer Protocol
+ 
+ 2) How would you describe what a protocol is to a complete newbie?
 
+ a. A protocol is an agreed-upon standard way of doing something.
+ 
+ 3) Which part of this URL describes the protocol?:
+
+  https://apis.scrimba.com/jsonplaceholder/posts
+  
+ a. https descibes the protocol.  HyperText Transfer Protocol Secure is https://
+  
+    ftp:// is the file transfer protocol
+  
+    SMTP is the simple mail transfer protocol 
+  
+ 4) if you had to guess, which request method (GET, POST, PUT, DELETE) would you 
+    
+    think we made in the previous challenge when we asked for data from the JSON placeholder API?
+    
+ a. The GET Metod. fetch if no other parameters or information is provided accept for the URL 
+    it will assume that you're sending a GET request to get data from this URL.
+    
+    
+#### Video 3 URLs and Endpoints
+
+Path (URL) - Address where your desired resource "lives"
+
+The URL for an API can be split into two portions.
+
+BaseURL vs. Endpoint
+
+  Base URL: https://apis.scrimba.com/jsonplacholder
+  
+  The Base URL is the portion of the URL that will not change no matter what kind of resource your getting from this API.
+  
+  For Example: https://apis.scrimba.com/jsonplacholder this will not change.
+  
+  Endpoint: /posts
+  
+  The Endpoint is the specific resource at that base URL that I want to get.
+  
+  For Example: The /posts Endpoint which represents a list of blog posts that live at this API
+  
+  So when you put the Base URL and the Endpoint together you get the full API
+  
+  Full URL: https://apis.scrimba.com/jsonplaceholder/posts
+  
+  In many cases there are various endpoints we can access for example the jsonplaceholder API has /users or /albums.
+  
+  If you were to click the link above your browser would send a GET request to the URL you're linking to.
+  
+  If that API / URL contains an HTML pageas a resource then your browser will load it like normal.
+  
+  Your browser won't load an HTML page it will load is the JSON response. It's able to display that and you can see the JSON in the browser.
+  
+  In chrome use the extention JSON formatter.
+  
+  ###### Quiz
+  
+  1) What's the difference between a Base URL and an Endpoint?
+
+  a. The Base URL is the part of the URL that won't change regardless of which resource we want.
+  
+     The Endpoint specifies which resource we want to get.
+ 
+  ***
+  Given the following URLs from an API:
+
+    https://blahblahblah.com/api/v2/users
+    https://blahblahblah.com/api/v2/products
+    https://blahblahblah.com/api/v2/products/123
+    
+  
+  2) Which part is the Base URL?
+
+  a. https://blahblahblah.com/api/v2
+  
+  3) What are the Endpoints?
+
+  a. /users, /products, /products/some id of a product here
+  
+    With /users and /products we would expect to get an array back as the response (array of users and an array of products)
+    
+    When we request /products/123 you can get a single product (an object) amongst the list products that are available.
+  
+  
+  #### Video 3 Requests - Methods
+  
+  GET, POST PUT DELETE, PATCH, OPTIONS
+  
+  The Method is telling the server which type of request you're making / What your intention with that method is.
+  
+  GET Request - getting data
+  
+  POST Request - Adding new data / send new data to a server / database. Note I am not asking the server to send data back!
+  
+  PUT Request - Updating existing data. This can also add new data if the data you're trying to update doesn't exist.
+  
+  DELETE Request - Removing data
+  
+  When we use fetch as we have as we don't specify a Method it assumes you are making a GET request.
+  
+  Example: fetch("https://apis.scrimba.com/jsonplaceholder/todos")
+  
+  There is a way in the fetch API to specify the request Method. You achieve this by using a second parameter.
+  
+  So the first parameter is the URL or the path of where im trying to access.
+  
+  The second parameter is an options object. Inside the object I can specify a key called method: and tell it the value i.e the methodt type.
+  
+  Example: fetch("https://apis.scrimba.com/jsonplaceholder/todos", {method: "GET"})
+  
+  This is explicitly telling fecth to perform a GET request / set the method of the request ot GET
+  
+  For GET this is not nesseccary as it is the default method.
+  
+  However for POST:
+  
+  fetch("https://apis.scrimba.com/jsonplaceholder/todos", {method: "POST"})
+  
+  For post we would also need to include the body 
+  
+  fetch("https://apis.scrimba.com/jsonplaceholder/todos", {method: "POST", body})
+  
+  Point is we can change the method of the request using fetch by providing the second parameter.
+  
+  
+  #### Video 4 BlogSpace - Get first 5 blog posts
+  
+  
+  
+  
 
 
 
