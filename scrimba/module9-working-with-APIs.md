@@ -193,12 +193,96 @@ The second console log
 
 ```
 
+Asynchronous means its happening out of order out of time.
+
+The beuaty of our .then() block is they don't block the other code in your javascript program from running.
+
+In the example they allowed the second console.log to run before the response from the fetch request ever
+
+came back from the server.
+
+#### Video 8 Dog API Fetch and DOM Practices
+
+Challenge. 
+
+Fetch a random image from the dog API again.
+
+Access the DOM and insert the URL you got from the API as an image `src` property
+
+(probably easiest if you create the image completely here in JS and add it as the 
+
+innerHTML of another element in the DOM).
+
+We need to write the fetch and parse in our URL.
+
+Next with our then() we want to say with the response that comes back we're going to change the body
+
+of the respnse from JSON into javascript. That is what .JSON does.
+
+```
+.then(response => response.json())
+```
+
+Then we will have access to the data. data is an object and it has a message property that can be used.
+
+```
+fetch("https://dog.ceo/api/breeds/image/random")
+  .then(response => response.json())
+  .then( data => {
+    document.getElementById("image-container").innerHTML = `
+      <img src="${data.message}" />
+  }
+```
+
+#### Video 9 fetch idea from Bored API
+
+challenge :
+
+1) Fetch a random activity from the bored API
+
+url: https://apis.scrimba.com/bored/api/activity
+
+2) Display the text of the activity in the browser.
 
 
+```
+fetch("https://apis.scrimba.com/bored/api/activity")
+  .then(response => response.json())
+  .then(data => {
+    console.log(data)
+    document.getElementById("activity-name").textContent = data.activity
+  }
+```
+
+#### Video 10 Aside - apis.scrimiba.com?
+
+Why we're using apis.scrimba.com and not https://www.boredapi.com/api/activity
+
+This is logistical stops the lesson becoming obsolete. The api data has been placed onto scrimba servers.
 
 
+#### Video 11 BoredBot - HTML
 
+Building html code for boredbot site.
 
+#### Video 12 BoredBot - CSS
+
+Building css code for boredbot site.
+
+#### Video 12 BoredBot - JavaScript
+
+Building Javascript code for boredbot site.
+
+```
+document.getElementById("btn-btn").addEventListener("click", function(){
+  fetch("https://apis.scrimba.com/bored/api/activity")
+  .then(response => response.json())
+  .then(data => {
+    console.log(data)
+    document.getElementById("activity").textContent = data.activity
+  }
+})
+```
 
 
 
