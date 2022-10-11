@@ -269,7 +269,7 @@ Building html code for boredbot site.
 
 Building css code for boredbot site.
 
-#### Video 12 BoredBot - JavaScript
+#### Video 13 BoredBot - JavaScript
 
 Building Javascript code for boredbot site.
 
@@ -283,6 +283,84 @@ document.getElementById("btn-btn").addEventListener("click", function(){
   }
 })
 ```
+
+#### Video 14 BoredBot - Extra styling
+
+Uses text content to change the heading from bored bot to happy bot
+Uses classList.add to add a styled classname to the body
+
+These are added to the event listener function, inside the fetch and the .then() function after we have recieved the data.
+
+#### Video 15 Section Recap
+
+###### Topics Covered
+
+Servers and Clients
+
+Request-Response Cycle - WRRC - web request response cycle
+
+APIs
+
+JSON
+
+fetch syntax
+
++ BoredBot project
+
+## URLs, REST & BlogSpace
+
+#### Video 1 Intro
+
+###### Topics
+
+Requests
+
+URLs (parameters, queries)
+
+REST API Design
+
++ BlogSpace project
+
+
+#### Video 2 HTTP Requests
+
+Recap request response cycle
+
+Request - A client asks for a resource from a server
+
+Response - A server responds (whether it worked or not) to the client.
+
+What does HTTP stand for? Hypertext Transfer Protocol
+
+Definition - A protocol is an agreed-upon, standard way of doing something.
+
+HTTP is a protocol for determining how hypertext (text) should be transfered over the internet.
+
+Components of a request:
+
+1) Path (url)
+
+2) Method - these include GET, POST, PUT, DELETE, PATCH, OPTIONS, ect
+
+3) Body
+
+4) Headers
+
+Challenge
+
+Send a request to the JSON Placeholder API using fetch
+URL: https://apis.scrimba.com/jsonplaceholder/posts
+
+Documentation: https://jsonplaceholder.typicode.com
+
+log the response data to the console.
+
+```
+fetch("https://apis.scrimba.com/jsonplaceholder/posts")
+  .then(response => response.json())
+    .then(data => console.log(data))
+```
+
 
 
 
