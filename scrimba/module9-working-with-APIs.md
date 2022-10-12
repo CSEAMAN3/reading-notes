@@ -1162,14 +1162,99 @@ From previous videos:
   (oftentimes they replace the ID of the resource)
 
 
+#### Video 18 JSON Placeholder API
+
+Challenge: Get all the comments from the blog post with ID of 2 and log to the console:
+
+* BaseUrl: https://apis.scrimba.com/jsonplaceholder/
+* Endpoint: ??? (Check JSON placeholder docs: https://jsonplaceholder.typicode.com/guide/ and look for the "listing nested resources" section)
+
+```
+fetch("https://apis.scrimba.com/jsonplaceholder/posts/2/comments")
+.then(response => response.json())
+.then(data => console.log(data))
+```
+
+#### Video 19 Query Strings
+
+Alot of documentation may refer to query string as parameters.
+
+Query Strings - A way to filter the results we get back.
+
+A common task is to recieve a list of bikes but to have filtered it down is some way or another.
+
+Bicycle shop API
+  BaseUrl: https://mikesbikes.com/api
+  
+    /bikes - This would get all of the bikes back that are available
+    
+Something you may have seen before in URL is a ? . This allows us to introduce a query string 
+
+In this example we don't only want to get back all the bikes on the API, instead we want to say only
+
+the bikes where the type property of the bike resource is set to mountain.
+
+    /bikes?type=mountain
+    
+The portion at the end that starts with a ? and then has a something = something else is called a query string of the URL.
+
+The ? is always the way to begin a query string. You can add properties to the query string with an ampersand (&).
+
+Example: /bikes?type=road&brand=trek
+
+Usually somewhere in the process the computer will translate this query string into an object.
+
+So where type=mountain this will turn into an object where the property/key of type has a value of mountain.
+
+{type: mountain}
+
+Where you have multiple properties it simple becomes an object with multiple properties:
+
+{
+  type: "road"
+  brand: "trek"
+}
 
 
+You can keep adding key value pairs in your query string using the ampersand (&).
+
+Example: /bikes?type=hybrid&brand=trek&color=gray
+
+this will create an object:
+
+{
+  type: "hybrid",
+  brand: "trek",
+  color: "gray"
+}
+
+###### QUIZ
+
+At mike's bikes, they also sell bike racks (endpoint is /bikeracks)
+
+What would you expect the endpoints to be for the following tasts:
+
+1) Get a list of all bikeracks sold on the site?
+
+a. /bikeracks
+
+2) Get a list of all bike racks available in the physical store right now
+
+  (Assume a query called "available" that is a boolean true/false)
+  
+a. /bikeracks?available=true
 
 
+3) Get a list of all "Thule" - brand bike racks that can hold 4 bikes?
+
+  (Assume there are "brand" and "numBikes" queries)
+  
+a. /bikeracks?brand=thule&numBikes=4
+
+Query string are embeded everywhere 
 
 
-
-
+#### Video 20 Query String Practice
 
 
 
