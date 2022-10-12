@@ -777,6 +777,400 @@ BaseURL vs. Endpoint
  
  ```
  
+#### Video 14 BlogSpace - Posts refactor
+
+So things that aren't right in the above code. 
+
+First we have duplicated our code. 
+
+Second The operation that runs when the program loads (the first fetch which gets the data and updates the dom)
+
+Later on we are also updating the DOM in the same way. We only have access to the list of posts that come back in
+
+that function. Once the function ends we no longer have access to our posts array, which is why we duplicate it on
+
+the end of our new blog post:
+
+Solution: 
+
+create a globalscope empty array - postsArray
+
+inside of the first fetch
+
+instead of creating the first variable (const postsArr = data.slice(0, 5))
+
+set the postsArray array to data.slice(0, 5) this is the array that comes back. 
+
+Then create a function called renderPosts whos job is to update the dom based on what the current
+
+state of postsArray. This way the first and last fetch requests can simply update postsArray and
+
+then call render posts.
+
+The renderPosts function now creates an empty string, loops through postsArray and sets the html += to add the
+
+next index. It them manipulates the DOM setting blog-list innerHTML to the html.
+
+This process can then be removed from the first and final fetch. In the first fetch
+
+we make the empty array = the data we get back from the response and then call renderPosts function
+
+to render on the page. In the final fetch we unshift the data(now called post) to the array and call the function
+
+renderPosts.
+
+```
+let postsArray = []
+
+function renderPosts(){
+  let html = ""
+    for (post of postsArray) {
+      html += `
+        <h3>${post.title}</h3>
+        <p>${post.body}</p>
+        <hr />
+      `
+    }
+    document.getElementById("blog-list").innerHTML = html 
+}
+
+fetch("https://apis.scrimba.com/jsonplaceholder/posts")
+  .then(response => ())
+  .then(data => {
+    postsArray = data.slice(0, 5)
+    renderPosts()
+  })
+ 
+ document.getElementById("new-post").addEventListener("submit", function(event){
+    event.preventDefault()
+    const postTitle = document.getElementById("post-title").value
+    const postBody = document.getElementById("post-body").value
+    const data = {
+      title: postTitle,
+      body: postBody
+    }
+    
+ fetch("https://apis.scrimba.com/jsonplaceholder/posts", {
+  method: "POST", 
+  body: JSON.stringify(data),
+  header: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then(response => response.json())
+  .then(post => {
+    postArray.unshift(post)
+    renderPosts()
+  })
+ })
+
+
+```
+
+#### Video 15 reset the form
+
+Add code to the final fetch to clear the inputs.
+
+Solution:
+
+Create global variable titleInput and bodyInput
+
+Change where we hav used the selectors
+
+Then change the value to be an empty string at the end.
+
+```
+let postsArray = []
+
+const titleInput = document.getElementById("post-title")
+const bodyInput = document.getElementById("post-body")
+
+function renderPosts(){
+  let html = ""
+    for (post of postsArray) {
+      html += `
+        <h3>${post.title}</h3>
+        <p>${post.body}</p>
+        <hr />
+      `
+    }
+    document.getElementById("blog-list").innerHTML = html 
+}
+
+fetch("https://apis.scrimba.com/jsonplaceholder/posts")
+  .then(response => ())
+  .then(data => {
+    postsArray = data.slice(0, 5)
+    renderPosts()
+  })
+ 
+ document.getElementById("new-post").addEventListener("submit", function(event){
+    event.preventDefault()
+    const postTitle = post-title.value
+    const postBody = post-body.value
+    const data = {
+      title: postTitle,
+      body: postBody
+    }
+    
+ fetch("https://apis.scrimba.com/jsonplaceholder/posts", {
+  method: "POST", 
+  body: JSON.stringify(data),
+  header: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then(response => response.json())
+  .then(post => {
+    postArray.unshift(post)
+    renderPosts()
+    post-title.value = ""
+    post-body.value = ""
+  })
+ })
+```
+
+Alternatively we can use .reset()
+
+```
+let postsArray = []
+
+const titleInput = document.getElementById("post-title")
+const bodyInput = document.getElementById("post-body")
+const form = document.getElementById("new-post") 
+
+function renderPosts(){
+  let html = ""
+    for (post of postsArray) {
+      html += `
+        <h3>${post.title}</h3>
+        <p>${post.body}</p>
+        <hr />
+      `
+    }
+    document.getElementById("blog-list").innerHTML = html 
+}
+
+fetch("https://apis.scrimba.com/jsonplaceholder/posts")
+  .then(response => ())
+  .then(data => {
+    postsArray = data.slice(0, 5)
+    renderPosts()
+  })
+ 
+ form.addEventListener("submit", function(event){
+    event.preventDefault()
+    const postTitle = post-title.value
+    const postBody = post-body.value
+    const data = {
+      title: postTitle,
+      body: postBody
+    }
+    
+ fetch("https://apis.scrimba.com/jsonplaceholder/posts", {
+  method: "POST", 
+  body: JSON.stringify(data),
+  header: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then(response => response.json())
+  .then(post => {
+    postArray.unshift(post)
+    renderPosts()
+    form.reset()
+  })
+ })
+```
+
+#### Video 16 REST
+
+What is REST?
+
+Representational State Transfer
+
+Rest is a design pattern to provide a standard way for clients and servers to communicate. 
+
+Priciples of REST:
+
+Client and server separation. 
+
+How would you best describe what REST is to your non-technical friend?
+
+a. A standardized way to have your computer, like your laptop, get or send information to another computer (like a server).
+
+
+What does a RESTful API usually return in response to incoming requests?
+
+a. Because the API is RESTful the server is'nt in charge of figuring out how to display the data.
+
+These days the most common form of data is JSON so the RESTful API will pretty much always return JSON data.
+
+
+What kind of client devices can make use of RESTful API?
+
+a. All of them can recieve JSON data and turn that into something visible to the end user.
+
+#### Video 16 REST API design
+
+Principles of REST
+
+Client and Server seperation: see previous video notes.
+
+Statelessness:
+
+When the client makes a request to the server the server doesn't maintain any memory of that request so when a request 
+
+is sent to a server the server fufills that request if it can and sends back a response and then forgets everything about
+
+that request and the client that made the request. If the client needs the server to know more information it will need to
+
+send that every single time it makes a request. Often this is called session state.
+
+Accessing Resources:
+
+This is the entire interaction between client and server is the client asking the server to send it some sort of resource.
+
+Interacting with resources: using stadardized URL endpoints:
+
+Bicycle Shop API
+BaseUrl: https://mikesbikes.com/api
+
+  Endpoints:
+    
+    /bikes
+    
+    This /bikes endpoint will likely support a couple of different methods including the GET and POST methods.
+    
+According to RESTful API design if I send a GET request to an Endpoint like  /bikes which is a noun I should be 
+
+returned an array of bikes. An array of JSON data that represents the bikes available on mikesbikes.com.
+
+Because the Endpoint ends in a noun the resource its reffering to is a collection of that noun.
+
+This also makes sense with a post request to an Endpoint that ends in a noun like / bikes. 
+
+A post request is a way for me to add new data. A POST request to /bikes would mean that want to add a new bike to
+
+the collection of bikes. This may be something an admin of mikesbikes.com may do not just any user.
+
+With RESTful API design it goes deeper. When you include an ID to your API Endpoint. 
+
+  /bikes/id: (e.g. /bikes/123)
+  
+Endpoints like this are another key component of RESTful API design.
+
+When we see the :id as a part of your URL it is not the literal text :id it is a placeholder for the id of one 
+
+specific bike in the collection of bikes.
+
+For Example the Endpoint may be /bikes/123
+
+Here 123 represents the id for one of the specfic bikes in the collection of bikes.
+
+So methods that would make sense with Endpoints like /bikes/123 might be: 
+
+A GET request.
+
+The difference between a get request on /bikes and /bikes/123 is:
+
+/bikes - This will return an array, an array of objects, each bike in the collection of bikes.
+
+/bikes/123 - This will return an object, one of the object from the array returned from /bikes 
+
+So it will be an object, one specific bike in the collection of bikes.
+
+A PUT request method may also be used on an Endpoint like /bikes/123.
+
+A PUT request is when we are updating a resource. A PUT request is most likly on an Endpoint with an
+
+id as we most likely want to update a single bike. If the bike in /bikes/123 has a price increase a
+
+PUT request to this Endpoint could update the price.
+
+A DELETE request will also most likely be made to an Endpoint with an ID to delete that one resource.
+
+Something to point out is that our API endpoints only include nouns and in this case id aswell.
+
+Good API design will not include verbs as a part of your API endpoint.
+
+Quiz:
+
+1) What does it mean for the server to be "Stateless"?
+
+It forget the interaction after the response is sent. 
+
+* In the mikes bikes example, what URL endpoint (and request method) would you expect to use in order
+to accomplish the following:
+
+2)  Retrieve a list of all the bikes that are sold
+
+  GET request to /bikes
+
+3) Retreive deleted information about the bike with ID of 42?
+
+  GET request to /bikes/42
+
+4) Update the price of the bike with the ID of 21?
+
+  PUT request /bikes/21
+
+5) Add a new bike to the list of bikes being sold?
+
+  POST request /bikes
+
+6) Remove the bike with the ID of 56 from the list of bikes?
+ 
+   DELETE request /bikes/56
+
+
+#### Video 17 Nested Resources
+
+Nested Resources and URL parameters
+
+From previous videos:
+
+  /bikes
+    GET
+    POST
+    
+  /bikes/:id (e.g. /bikes/123)
+    GET
+    PUT
+    DELETE
+  
+  /bikes/:id/reviews (e.g. /bikes/123/reviews)
+  
+  
+###### QUIZ
+
+1) How is a nested resource URL like /bikes/123/reviews
+   different from an endpoint like /reviews?
+   
+   bikes/123/reviews - return an array of reviews about that specific bike
+   
+   /reviews - return an array of all reviews on the site.
+
+2) What URL might you use to GET the review with an ID of 5 on the bike with the ID of 123?
+   
+   /bikes/123/reviews/5
+
+3) Descibe a "URL Parameter" in your own words:
+
+  A variable inside the URL that acts as a placeholder for th real value.
+  
+  (oftentimes they replace the ID of the resource)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
