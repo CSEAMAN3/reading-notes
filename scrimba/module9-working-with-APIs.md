@@ -495,15 +495,288 @@ BaseURL vs. Endpoint
   
   #### Video 4 BlogSpace - Get first 5 blog posts
   
+  Challenge:
+  
+  Get a list of blog posts from the JSON placeholder API
+  
+  BaseURL: https://apis.scrimba.com/jsonplaceholder/
+  Endpoint: /posts
+  
+  Since there are so many posts, lets limit the array to just 5 items.
+  
+  You can use the `.slice()` array method to just grab the first 5 objects fromt he data
+  
+  array that comes back from the API.
+  
+  Log the 5 items to the console.
+  
+  ```
+  fetch("https://apis.scrimba.com/jsonplaceholder/posts")
+  .then(response => response.json())
+  .then(data => {
+    const postArr = data.slice(0, 5)
+    console.log(postArr)
+  })
+  ```
   
   
+  #### Video 5 BlogSpace - Display blogs on page
   
+  Challenge:
+  
+  With the 5 blog post objects, display the `title` and `body` properties of the first
+  
+  5 posts on the browser.
+  
+  Hints
+  
+  create a `div` in the HTML file to store these items
+  
+  Loop over the items creating a string of HTML elements you can then put into the div with `innerHTML`
+  
+  
+  create a div with an ID - i created .container
+  
+  My Solution was
+  
+  ```
+   fetch("https://apis.scrimba.com/jsonplaceholder/posts")
+  .then(response => response.json())
+  .then(data => {
+    const postArr = data.slice(0, 5)
+    for (let i = 0; i < postsArr.length; i++){
+      const heading = document.createElement("h3")
+      const para = document.createElement("p")
+      heading.innerHTML = postsArr[i].title
+      para.innerHTML = postsArr[i].body
+      container.appendChild(heading)
+      container.appendChild(para)
+    }
+  })
+  ```
+  
+  Scrimba Solution
+  ```
+   fetch("https://apis.scrimba.com/jsonplaceholder/posts")
+  .then(response => response.json())
+  .then(data => {
+    const postArr = data.slice(0, 5)
+    let html = ""
+    let (post of postsArr){
+      html += `
+        <h3>${post.title}</h3>
+        <p>${post.body}</p>
+        <hr />
+      `
+    }
+    document.getElementById("blog-list").innerHTML = html
+  })
+  ```
+  
+  The Scrimba solution is better as it is only maniuplating the DOM once 
+  
+  My solution is manipulating the DOM on every iteration of the loop.
+  
+  
+  #### Video 6 BlogSpace - Add Styling
+  
+  Add style to the BlogSpace project
+  
+  
+  #### Video 7 BlogSpace - New Post Form
+  
+  Challenge:
+  
+  Create a form with 2 inputs (each with an associated label),
+  
+  one for the post title (a text input) and one for tge post body
+  
+  (a text area element). Then add a button to the form.
+  
+  Dont worry about styling.
+  
+  
+  #### Video 8 BlogSpace - Add style to the Form
+  
+  Challenge to style the form added to the BlogSpace project
+  
+  
+  #### Video 9 BlogSpace - Form Submit Event Listener
+  
+  Solution:
+  
+  In Javascript
+  ```
+  document.getElementById("new-post).addEventListener("submit", function(event){
+    event.preventDefault()
+    const postTitle = document.getElementById("post-title").value
+    const postBody = document.getElementById("post-body").value
+    const data = {
+      title: postTitle,
+      body: postBody
+    }
+    console.log(data)
+  })
+  ```
+  
+   #### Video 10 Requests - Body
+   
+   The request body is the data we want to send to the server.
+   
+   The request body is only included when using a POST or PUT request.
+   
+   We need to make sure we turn the javascript object we're sending to 
+   
+   the server into JSON first.
+   
+   How do we include a body in our request?
+   
+   We need to add a second parameter to the fetch request which is an options object.
+   
+   The options object has options we can add such as body.
+   
+   The body option is an object and we include the properties of title and completed.
+   
+   title is a string and completed is a boolean set to false.
+   
+   To set the body to JSON we put our object inside JSON.stringify()
+   
+   
+   
+   fecth("https://apis.scrimba.com/jsonplaceholder/todos", {
+    method: "POST", 
+    body: JSON.stringify({
+        title: "Buy Milk"
+        completed: false;
+      })    
+   })
+   .then(response => response.json())
+      .then(data => console.log(data))
 
 
+#### Video 11 Requests - Headers
 
+  Headers are:
+  
+  Extra/meta information about the outgoing request.
+  
+  Can include information about Auth, body info, client info, ect.
+  
+  Just like with the body we can add a headers option to our options object.
+  
+  The value of the headers option is also an object and inside we can include 
+  
+  a value of "Content-Type" for the value we will use "application/json".
+  
+  This is telling the server I am sending JSON in the request body. So be prepared
+  
+  to take the json and parse it into javascript and do your thing with it.
 
-
-
+  fecth("https://apis.scrimba.com/jsonplaceholder/todos", {
+    method: "POST", 
+    body: JSON.stringify({
+        title: "Buy Milk"
+        completed: false;
+      })
+      headers: {
+        "Content-Type": "application/json"
+      }
+   })
+   .then(response => response.json())
+      .then(data => console.log(data))
+      
+      
+ #### Video 12 BlogSpace - send new post to server
+ 
+ Challenge: Send the form data to the server
+ 
+ Solution:
+ ```
+ fetch("https://apis.scrimba.com/jsonplaceholder/posts")
+  .then(response => ())
+  .then(data => {
+    const postsArr = data.slice(0, 5)
+    let html = ""
+    for (post of postsArr) {
+      html += `
+        <h3>${post.title}</h3>
+        <p>${post.body}</p>
+        <hr />
+      `
+    }
+    document.getElementById("blog-list").innerHTML = html 
+  })
+ 
+ document.getElementById("new-post").addEventListener("submit", function(event){
+    event.preventDefault()
+    const postTitle = document.getElementById("post-title").value
+    const postBody = document.getElementById("post-body").value
+    const data = {
+      title: postTitle,
+      body: postBody
+    }
+    
+ fetch("https://apis.scrimba.com/jsonplaceholder/posts", {
+  method: "POST", 
+  body: JSON.stringify(data),
+  header: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then(response => response.json())
+  .then(data => console.log(data))
+ })
+ 
+ ```
+ 
+  #### Video 13 BlogSpace - Add new post to the list of posts
+  
+  Solution:
+ ```
+ fetch("https://apis.scrimba.com/jsonplaceholder/posts")
+  .then(response => ())
+  .then(data => {
+    const postsArr = data.slice(0, 5)
+    let html = ""
+    for (post of postsArr) {
+      html += `
+        <h3>${post.title}</h3>
+        <p>${post.body}</p>
+        <hr />
+      `
+    }
+    document.getElementById("blog-list").innerHTML = html 
+  })
+ 
+ document.getElementById("new-post").addEventListener("submit", function(event){
+    event.preventDefault()
+    const postTitle = document.getElementById("post-title").value
+    const postBody = document.getElementById("post-body").value
+    const data = {
+      title: postTitle,
+      body: postBody
+    }
+    
+ fetch("https://apis.scrimba.com/jsonplaceholder/posts", {
+  method: "POST", 
+  body: JSON.stringify(data),
+  header: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then(response => response.json())
+  .then(post => {
+    document.getElementById("blog-list").innerHTML = `
+      <h3>${post.title}</h3>
+      <p>${post.body}</p>
+      <hr />
+      ${document.getElementById("blog-list").innerHTML}
+    `
+  })
+ })
+ 
+ ```
+ 
 
 
 
