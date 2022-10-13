@@ -575,7 +575,95 @@ the array.
 
 #### Reading and writing files
 
+Node can read and write files on our computer. To do this we use one of nodes cor modules called fs. 
 
+So firstly we will creat the variable and require fs.
+
+```
+var fs = require('fs')
+```
+
+As previously mentioned it's general practice, typical naming convention, to call the variable the same as the module name.
+
+So what can the fs module do for us?
+
+In this tutorial we will focus on reading and writing files. 
+
+First lets create a file to read. readMe.txt. And enter some text... yay, you read me!
+
+now to read the file we type. fs.readFileSync() this is the method that we're going to use on this fs module that can go out and
+
+read the file we created.
+
+example inside app.js
+```
+var fs = require('fs')
+
+fs.readFileSync()
+```
+
+fs.readFileSync() naming is node being very explicit in it's methods name, this is a syncronos method. Meaning that if we had
+
+any code below fs.fileSync() its going to go out and fully read this file before it goes out and reads any other code. 
+
+Essentially it's blocking the flow of the code until fs.fileSync() is complete. There is also an async version of this which
+
+we will look at later on.
+
+We need to parse through a couple of parameters the first being the file itself. This can either be the full path to the file or 
+
+becuase its in the same folder as app.js we can just write the file name - readMe.txt
+
+The second parameter i'm gonna pass through is the character encoding because we're dealing with binary data here. When we go out 
+
+and read a file we're dealing with binary data - 0 and 1. The character encoding is going to go out and determine what those 0 and 1 mean.
+
+In this case the character encoding is going to be utf8.
+
+```
+var fs = require('fs')
+
+var readMe = fs.readFileSync('readMe.txt', 'utf8')
+console.log(readMe)
+```
+
+We have stored the result of this in a variable. Loggin the readMe variable display the text of readMe.txt.
+
+To recap the fs module has gone out and read the readMe.txt file syncronously using the utf8 encoding to store the file content
+
+in the varibale readMe which we have then logged to the console.
+
+Now lets look at how we can write a file. 
+
+What we will do is read the readme.txt file first store it in the readMe variable then take the content of that variable and
+
+write it to a new file. 
+
+First lets us another method on the fs module called fs.writeFileSync(). Again this is a syncronous operation.
+
+As the parameters we need to say first where we want the file to be written to (a file will be created called writeMe.txt) 
+
+and then secondly the data we want to write to this writeMe.txt file (this is the data stored as readMe).
+
+```
+var fs = require('fs')
+
+var readMe = fs.readFileSync('readMe.txt', 'utf8')
+
+fs.writeFileSync('writeMe.txt', readMe )
+```
+
+When we run the application we see a new file created called writeMe.txt and the content will be the same as readMe.txt
+
+To recap:
+
+We have read a file syncronously and stored the content of that file in a variable. Then once that is complete we have used 
+
+a second method on the fs module writeFileSync() to create a new file writeMe.txt and made the content of that file the data
+
+we stored in the variable which was created to read the original file var readMe. 
+
+The asyncronous versions of these methods 
 
 
 
