@@ -108,13 +108,152 @@ Node.js can tell us where we are in a particular directory or what file we are i
 
 console.log(__dirname)
 
+The console will now tell us which directory we are in.
+
+console.log(__filename)
+
+The console will now tell us which the full directory and the file.
+
+#### Function Expressions
+
+How Would we normally make a function expression in javascript?
+
+```
+//normal function statement
+
+function nameOfFunc(){
+  console.log("Hi")
+}
+
+//invoke the function
+
+nameOfFunc()
+
+//What is a function expression
+
+var funcExp = function(){
+  console.log("bye")
+}
+
+//invoke the function
+
+funcExp()
+
+```
+
+You will see the function expression pattern alot in Node.js
+
+I can also parse functions from one thing to another..
+
+```
+
+function callFunction(fun){
+  fun()
+}
+
+var funcExp = function(){
+  console.log("bye")
+}
 
 
+callFunction(funcExp)
+
+```
+
+We will see this pattern alot in Node.js
+
+#### Modules & require()
+
+when writing a Node.js Application we don't place all our application code in one file  and just let it run.
+
+This would be nightmare to manage and for other developers to work with, refactor, extend, ect.
+
+So, we split our code up into logical modules, so we have different modules for different bits of code which has it's own certain
+
+functionality in our application. We then call upon those modules whenever we need them.
+
+Example: 
+
+Say we had a module. some sort of utilty module that counted things for us. Then we could go ahead and create our module then 
+
+call upon that module when we need to count something. 
+
+create a new file called count.js
+
+A module is essentially just another javascript file.
+
+In count.js
+
+```
+var counter = function(arr){
+  return "There are " + arr.length + " elements in this array" 
+}
+
+console.log(counter(["Chris","Louise", "Thomas"]))
+```
+
+If we now want to use this functionality elsewhere in the application for example in app.js
+
+Well, thats where we use the require function, the require function is in the glodal object in Node.js.
+
+This means we can use it wherever we are.
+
+to use count.js in app.js
+
+inside app.js
+```
+require("./count")
+```
+
+we write require then parenthesis, inside the parenthesis as a string we write the path to the module we require in this file.
+
+So ./ says we want a file in the current directory followed by the file name, in this case it is count.
+
+We do not need to put .js on the end it will automatically find that file.
+
+So what happens if we try to use the counter function inside our app.js file.
 
 
+```
+require("./count")
+
+console.log(counter(["Chris","Louise", "Thomas"]))
+```
+
+This will result in an error. The reason this will error is because the counter method is not available to us outside of the
+
+count.js module. 
+
+What we have to do inside the count.js module is explicitly say what part of the module we want to make availble to other files
+
+which require this module.
+
+The way we do that is:
+
+```
+var counter = function(arr){
+  return "There are " + arr.length + " elements in this array" 
+}
+
+module.exports = counter;
+```
+
+So now when we require(./count) it will return to us what module.exports is = to. In this case counter.
+
+What we need to do is set require(./count) = to a variable. Becuase it is returning a variable to us.
+
+```
+var counter = require("./count")
+
+console.log(counter(["Chris","Louise", "Thomas"]))
+```
+
+Now we can use this counter function in the app.js file. This time when we run the code it will console log the string
+
+There are 3 elements in this array
 
 
-
+#### Modules Patterns
 
 
 
