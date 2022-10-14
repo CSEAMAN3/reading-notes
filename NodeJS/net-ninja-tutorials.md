@@ -663,7 +663,42 @@ a second method on the fs module writeFileSync() to create a new file writeMe.tx
 
 we stored in the variable which was created to read the original file var readMe. 
 
-The asyncronous versions of these methods 
+The asyncronous versions of these methods.
+
+Firstly we can get rid of the variable and remove the sync part. 
+
+Example
+
+```
+fs.readFile("readMe.txt", "utf8")
+```
+Now this will an asyncronous method, because this is asycrounous we need a callback function to fire when the process is complete.
+
+That is the third parameter in this method.
+
+```
+fs.readFile("readMe.txt", "utf-8", function(err, data){
+  console.log(data)
+})
+```
+
+We use a function which takes 2 parameters, first an error if there is one and the sencond the data we retrieve and read from the file.
+
+For now inside the function we will log to the console the data that we retieve.
+
+The benefit of this is that we are not blocking the code. While this is being read the rest of the code can still be processed. It is 
+
+Asyncronous. We can do the same thing with write file. We will do it inside the function as we only want to write the file once the read
+
+file is complete.
+
+```
+fs.readFile("readMe.txt", 'utf8', function(err, data){
+  fs.writeFile("writeMe.txt", data)
+})
+```
+
+
 
 
 
