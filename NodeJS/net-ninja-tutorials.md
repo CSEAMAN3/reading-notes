@@ -2,7 +2,7 @@
 
 The Net Ninja - YouTube channel - Node JS tutorials for beginners
 
-#### Node.js Actually is...
+#### Node.js Actually is... video 1
 
 A platform which allows us to run Javascript on a computer / server
 
@@ -11,7 +11,7 @@ Read, delete and update files
 Easily communicate with a database
 
 
-#### Why is Node.js so popular
+#### Why is Node.js so popular video 1
 
 It uses JavaScript
 
@@ -21,7 +21,7 @@ Huge ecosystem of open source packages
 
 Great for real-time services (like chat)
 
-#### What we will learn
+#### What we will learn video 1
 
 The inner workings of Node.js
   - V8 engine
@@ -42,7 +42,9 @@ What you need to know already
   - HTML
   - A tiny bit about the command line
 
-#### The V8 Engine
+#### video 2 installing Node JS
+
+#### The V8 Engine video 3
 
 This tutorial is so we can understand how Node.js works
 
@@ -90,7 +92,7 @@ Javascript -> C++ Node.js V8 -> Machine Code
 
 When we write javascript and run it through Node.js, the javascript is parsed into V8 and converted into machine code.
 
-#### The Global Object
+#### The Global Object video 4
 
 When we write Javascript in a browser the global object is the window.
 
@@ -114,7 +116,7 @@ console.log(__filename)
 
 The console will now tell us which the full directory and the file.
 
-#### Function Expressions
+#### Function Expressions video 5
 
 How Would we normally make a function expression in javascript?
 
@@ -162,7 +164,7 @@ callFunction(funcExp)
 
 We will see this pattern alot in Node.js
 
-#### Modules & require()
+#### Modules & require() video 6
 
 when writing a Node.js Application we don't place all our application code in one file  and just let it run.
 
@@ -253,7 +255,7 @@ Now we can use this counter function in the app.js file. This time when we run t
 There are 3 elements in this array
 
 
-#### Modules Patterns
+#### Modules Patterns video 7
 
 In the last tutorial we created a module, count.js. We applied module.exports = counter to make the variable function accessible elsewhere
 
@@ -414,7 +416,7 @@ These are some module patters we can use to export our data or functions and mak
 
 when we require the modules.
 
-#### The Event Module
+#### The Event Module video 8
 
 In the last tutorial we created a custom module called stuff, we reuired that in our app.js file and called the variable stuff.
 
@@ -573,7 +575,7 @@ So finally if we call some events such as james.emit('speak', 'Hey, dudes'). So 
 
 the array. 
 
-#### Reading and writing files
+#### Reading and writing files video 9
 
 Node can read and write files on our computer. To do this we use one of nodes cor modules called fs. 
 
@@ -698,7 +700,7 @@ fs.readFile("readMe.txt", 'utf8', function(err, data){
 })
 ```
 
-
+#### Creating / removing directories video 10
 
 
 
