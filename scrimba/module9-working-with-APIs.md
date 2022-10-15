@@ -34,7 +34,7 @@ Restuarant Analogy
 
 ###### Getting data from a server
 
-The server hosts "an API" - exposed "endpoints" we can accessfor getting data from the server.
+The server hosts "an API" - exposed "endpoints" we can access for getting data from the server.
 
 Note - the server does not give us access to everything, just the things they want us to have.
 
