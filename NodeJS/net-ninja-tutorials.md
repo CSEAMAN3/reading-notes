@@ -702,10 +702,103 @@ fs.readFile("readMe.txt", 'utf8', function(err, data){
 
 #### Creating / removing directories video 10
 
+First lets look at how we delete files with fs.
+
+We use a method called unlink. We call it with fs.unlink("") and then parse in the file name we wish to delete. 
+
+In this example the file we want to delete is writeMe.txt. So if we run the file you we see the writeMe.txt gets deleted.
+
+```
+var fs = require("fs")
+
+fs.unlink("writeMe.txt")
+```
+
+You need to be careful, if we run the program again we get an error as it will state no such file exists.
+
+Creating directories:
+
+We can either create directories syncronously or asyncronously.
+
+The syncronous version:
+
+we create a directory using the fs module. We create the directory writing mkdir. We then follow this with Sync() to state this is a syncronous method.
+
+We then parse the name of the directory we want to create in this example we create stuff.
+
+```
+var fs = require("fs")
+
+fs.mkdirSync("stuff")
+```
+
+To delete directories we run rmdir - this is remove directory.
+
+```
+fs.rmdirSync("stuff")
+```
+
+Do these syncronously will block the code, generally we would want to perform these asyncronously.
+
+Now to make these method asyncronously we simple remove the sync word.
+
+Remember when we use asyncronous methods we should use a call back function to do something once this action has been completed.
+
+We can parse this callback function through here as the second parameter. In this example we will read the readMe.txt file.
+
+We use the fs.readFile method parsing in the file we want to read and the utf8 encoding, then we fire a callback function once 
+
+this is complete. In the call back function we parse error as the first parameter and then the data we recieve. The data we recieve
+
+we are going to parse through into a new file which will be in the new directory we create. We do this writing the fs.writeFile() method.
+
+We tell it where we want the new file to be using the file path and then give it the name we want to call the file. 
+
+secondly we tell it what we want to write to the file, in this case it is the data.
+
+fs.writeFile("./stuff/writeMe.text", data)
+
+```
+var fs = require("fs")
+
+fs.mkdir("stuff", function(){
+  fs.readFile("readMe.txt", utf8, function(err, data){
+  fs.writeFile("./stuff/writeMe.txt", data)
+  })
+})
+```
+
+Now when we run the file you will see, first it creates the stuff directory, reads the readMe.txt, creates the writeMe.txt inside the
+
+stuff directory and places the content / data it copied from the readMe.txt file into the content of the writeMe.txt file.
+
+Now if we wish to delete this directory asyncronously we type:
+
+```
+fs.rmdir("stuff")
+```
+
+If we run this node will error, it will state, the directory is not empty. This is because it has writeMe.txt inside it.
+
+We cannot remove a directory without it being empty.
+
+So first we need to use the fs.unlink() method to remove a file. fs.unlink("./stuff/writeMe.txt")
+
+We do this and parse in a call back function  which once the writeMe.txt has been removed will remove the stuff directory using 
+
+the fs.rmdir() method.
+
+```
+var fs = require("fs")
+
+fs.unlink("./stuff/writeMe.txt", function(){
+  fs.rmdir("stuff")
+})
 
 
+```
 
-
+#### Clients and servers video 11
 
 
 
