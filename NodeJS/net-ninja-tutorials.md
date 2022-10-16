@@ -800,6 +800,73 @@ fs.unlink("./stuff/writeMe.txt", function(){
 
 #### Clients and servers video 11
 
+When we browse a website in a browser we might might request some data, at which point the client which is the browser sends a request 
+
+to the server, the server will then handle that request and send a response to the client which in most instance will update what we see.
+
+How do the client and server communicate with each other? This is done through a protocol.
+
+A protocol is a set of communication rules, that two wides agree to use when communicating.
+
+Each computer or server can be identified by its own unique ip address. If a client wants to make a request to a server then it will need
+
+to connect to the server ip address. To do this it will open up a socket between the two computers. Essetially this is a channel with which
+
+the communication can take place. The information which is sent is structured via differnet protocols. For example http or ftp.
+
+These protocols are like the different langauge that both the client and server can speak. Think example a german and italian person need
+
+to talk neither speak each others langauge but they both speak english, therefor to communicate they speak in english.
+
+Dependant on what the client and server are trying to communicate they will use a different protocol to structure the data or information
+
+that needs to be sent.
+
+So ftp is for file transfer and stands for file transfer protocol. 
+
+http is used for websites.
+
+Once the structure of the information/data has been decided upon, for example http, the infromation is then sent down the socket between
+
+the two computers via a protocol called TCP, so although the data is structured in a particular way, the way that it is sent from the
+
+server to the client is via the TCP protocol. What this essentially does is split up the data into smaller little sections and
+
+transfers them along the socket. The small sections are called packets. All of this functionality is built into our computers
+
+and then node.js gives us a the ability to access this functionality to open the connection between two computers and send information 
+
+between them. So if we run node.js on a server we can tell node what information we want to send out to clients when they make a 
+
+particular response.
+
+Ports:
+
+A program running on a computer can listen for requests sent to a particular port number.
+
+E.g 172.24.86.76:3000
+
+When we send a request to a server, which node.js is living on, how do we know that the request was meant for node.js itself and not 
+
+some other program which is also running on the server instead (like an email progam for example). How do we know we want node.js and
+
+not the email program or any other program to deal with that request? The answer is that node.js and other programs running on the server
+
+all listen to a particular port number, so if a request is sent to an ip address to a particular port number on that ip, if node.js is 
+
+listening out for requests on that port it will respond, otherwise it won't. This is how we route our requests to node.js.
+
+A typical port will look like the example above. We have the ip address 172.24.86.76 and on that computer a variety of different programs 
+
+and then node.js might be listening to a particular port, i.e 3000, so if we send requests to this port, 3000, then it is going to be 
+
+listening to that port and it is going to send response to us.   
+
+#### Creating a server Video 12
+
+
+
+
 
 
 
