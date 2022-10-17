@@ -864,6 +864,114 @@ listening to that port and it is going to send response to us.
 
 #### Creating a server Video 12
 
+Making a server in node.js. We will then make a request to that server and deal with that request in node.js.
+
+We need to use a node.js cor module called the http module.
+
+```
+var http = require("http")
+```
+
+Now we can use a method which is given to us on this cor module to create our server. The createServer() method
+
+```
+var http = require("http")
+
+var server = http.createServer()
+```
+
+Next we need a way to deal with any requests that come into the server. To do this we parse a function through our createServer Method.
+
+```
+var http = require("http")
+
+var server = http.createServer(function(request, response){
+  
+})
+```
+The way this works is that whenever we send a request to this server then this function is going to fire. Inside the function we have taken the
+
+two parameters, a request object and a response object. The request object is loaded with details about the request that has been made, the response
+
+object is something we can use to send a response back to the client. 
+
+Lets talk about how we do that as well as headers.
+
+So when we make a request to a server and when we respond then as well as responding with some data/information we also respond with response headers 
+
+and on the request we can send request headers. You can think of headers as extra information about the request or the response.
+
+This is much like in an HTML page you have a head section, which tells the browser a little bit more about the HTML document but it's not actually
+
+shown on the browers, well thats a little like the headers in the response and the request. The kind of thing we can put in this header are 
+
+the content type so the browser knows what to expect, wheter that's going to be plain text or html or json as it will deal with each one in a different
+
+way. For example it renders html on a page in a browser it doesn't do that with plain text. We can also put a status in the response headers, this is 
+
+something like 200 which means everything is ok, or 404 if the page can't be found. 
+
+So lets go ahead and create these response headers first of all and then we will serve up some information.
+
+The way we write the response header is: response.writeHead() we then write the first parameter as the status and then we will parse through an
+
+object and in here we'll enter "Content-Type":"text/plain". This is so the browser knows what to do with this content!
+
+```
+var http = require("http")
+
+var server = http.createServer(function(request, response){
+  res.writeHead(200,{"Content-Type":"text/plain"})
+})
+```
+
+The next thing to do is end the response and send it to the browser. To do that we use a method called end on the response object. Inside the end 
+
+parenthesis we can send back some information/data. We've said we're going to send back plain text so that's what we'll send "hey ninjas"
+
+```
+var http = require("http")
+
+var server = http.createServer(function(request, response){
+  response.writeHead(200,{"Content-Type":"text/plain"})
+  response.end("Hey ninjas")
+})
+```
+So here we're sending back the headers and the response body itself. So if I was to now make a requestby going to my localhost this still wouldn't work
+
+and thats because we hae not specified a port number to listen to. We need to set up node.js to listen a particular port for requests.
+
+If we don't do that before we send requests it won't be listening for them. We do that by selecting our variable and running the .listen() method.
+
+Inside the parenthesis we first specify the port we're going t0 listen to. Here we use 3000. Then we'll put in the ip address which is
+
+127.0.0.1 this is just the localhost because this is going to be a local server.
+
+```
+var http = require("http")
+
+var server = http.createServer(function(request, response){
+  response.writeHead(200,{"Content-Type":"text/plain"})
+  response.end("Hey ninjas")
+})
+
+server.listen(3000, "127.0.0.1")
+console.log("yo dawgs, now listening on port 3000")
+```
+
+So now we're listening to this port on this ip address so when we get a request ot this port then it is going to respond. It going to find the
+
+function. It is also a good idea aswell, when we're listening to a port, to log a message in the terminal.
+
+If we now run this in node by typing node app in the terminal. If we then go to 127.0.0.1:3000 in the browser we will see the content "Hey ninjas".
+
+If we inspect and open the network tab, if we refresh we can see the requests, I we then click on the request  we can see the response. If we go 
+
+to headers we can see the headers that we have set. 
+
+#### Streams and Buffers Video 13
+
+
 
 
 
