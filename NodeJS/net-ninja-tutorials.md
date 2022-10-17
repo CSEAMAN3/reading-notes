@@ -971,9 +971,251 @@ to headers we can see the headers that we have set.
 
 #### Streams and Buffers Video 13
 
+Buffer: 
+
+Temporary storage spot for a chunk of data that is being transferred from one place to another.
+
+The buffer is filled with data, then passed along.
+
+Transfer small chunks of data at a time.
+
+Stream: 
+
+It is a stream of data that flows over time from one place to another. 
+
+Buffers and streams allow us to start consuming data before it all arrives.
+
+Why do you need to know this?
+
+Can create streams to read and write files in node.js to transfer data. We can increase performance.
+
+This is also true when dealing with requests from our server and we're sending data back to our client to be consumed.
+
+#### Readable Streams Video 14
+
+Streams:
+
+Writable streams - allow node.js to write data to a stream.
+
+Readable streams - allow node.js to read data from a stream.
+
+Duplex - can read and write a stream.
+
+For this example we have used the code form previous video, commented out as it will be needed.
+
+First we're going to look at creating a read stream. There is also a readMe.txt file created with lorem ipsom inside.
+
+The readMe.txt is what we will be reading in the readable stream. 
+
+To create our read stream we need to use the fs core node module. We use this module to read a file. This time we're reading it through a stream.
+
+First we need to get that module var fs = require("fs")
+
+To create a readable stream we need to use a method called createReadStream
+
+We store it in a variable var myReadStream = fs.createReadStream()
+
+What we need to do is specify and tell node.js which file we want to read through this stream. We want to read readMe.txt
+
+To do this we will use the 
+
+__dirname 
+
+property on the global object which will get me my current directory we will then concatinate it with the file name.
+
+We will now create a read stream which will read this file. 
+
+What will happen is we're going to read this a little bit at a time. It will find the readMe.txt data then this data will be read a small amount at
+
+a time through the stream it will then fill up the buffer then that buffer is going to parse that data on in chunks to this variable.
+
+We can recognise when we recieve one chunk of data. We can to that because this createReadStream inherits from the event emitter.
+
+There is an event called data on the createReadStream which allows us to listen for whenever we recieve any kind of data or any kind
+
+of chunk of data from this stream. We will set up a listener that will listen out for that and then fire a function everytime we recieve something.
+
+myReadStream.on('data', function(chunk){
+  console.log("new chunk recieved")
+  console.log("chunk")
+}) 
+
+and this data is called a chunk. If we now run this in node,  we will see the log. 
+
+You will see the chunk is just a buffer it is not the text itself we're not reading it. This is because we have not specified the character encoding.
+
+utf8 needs to be specified. 
+```
+var myReadStream = fs.createReadStream(__dirname + "/readme.txt", "utf8")
+```
+
+By making utf8 as the character encoding we will now see the text that we want.
 
 
 
 
 
+```
+var http = require("http")
 
+var fs = require("fs")
+
+var myReadStream = fs.createReadStream(__dirname + "./readMe.txt", "utf8")
+
+myReadStream.on('data', function(chunk){
+  console.log("new chunk recieved")
+  console.log("chunk")
+}) 
+
+//var server = http.createServer(function(request, response){
+//  response.writeHead(200,{"Content-Type":"text/plain"})
+//  response.end("Hey ninjas")
+//})
+
+//server.listen(3000, "127.0.0.1")
+//console.log("yo dawgs, now listening on port 3000")
+```
+
+#### Writable Streams Video 15
+
+We will create a writable stream so we can send data along that to somehwher else.
+
+In the last tutorial we created a read stream and we read readMe.txt, we listend out for the data event and fired a function whenever we
+
+recieved a piece of data. Now we're going to create a writeable stream so that we can write this data that we recieved to that write stream 
+
+and send it somewhere else. To do that we create a variable called myWriteStream and set this = to fs. and use the method called 
+
+createWriteStream(). Now we need to tell it where we want to create it to. Where is the data going to. So we want to create a write me text file 
+
+so are variable will look like this:
+
+```
+var myWriteStream = fs.createWriteStream(__dirname + '/writeMe.txt')
+```
+So this has created a write stream which we can write on to and send data to the path /writeMe.txt.
+
+But how do we do that? We will do that everytime we recieve a new chunk of data from the read stream.
+
+so we will read:
+
+```
+var myReadStream = fs.createReadStream(--dirname + '/readMe.txt', 'utf8')
+```
+
+and then eveytime we recieve a chunk of data:
+
+```
+myReadStream.on('data', function(chunk){
+  console.log('new chunk recieved')
+})
+```
+it will fire the function so now we can write the chunk of date to the write stream and send it to the new location writeMe.txt.
+
+We do that using the myWriteStream variable that we stored the write stream in. We use that in the myReadStream.on function.
+
+We then use a method on it called write() then in the parenthesis we put the data we want to write, in our case it is chunk.
+
+```
+var http = require("http")
+var fs = require("fs")
+
+var myReadStream = fs.createReadStream(__dirname + '/readMe.txt', 'utf8')
+var myWriteStream = fs.createWriteStream(__dirname + '/writeMe.txt', 'utf8')
+
+myReadStream.on('data', function(chunk){
+  console.log('new chunk recieved')
+  myWriteStream.write(chunk)
+})
+```
+Step by step
+
+We are reading this file readMe.txt by ctreaing a read stream
+
+Everytime we recieve a chunk of data we fire a function as we have an event listener myReadStream.on
+
+When we get that chunk of date we log to the console.
+
+Then we are calling the write stream we created myWriteStream which can write to the path /writeMe.txt
+
+When we call the write stream we say go ahead and write to it and the data we want to write to it is the chunk of data we just recieved.
+
+So if we run the program now you will see it create the writeMe.txt and it will write the data to it.
+
+There is another way to do this which is even quicker and that is by using pipes. 
+
+#### Pipes Video 16
+
+Becuase reading data from a read stream and then transfering that data to the write stream is very common in node.js therefore node has created a 
+
+more elegant way to do it. That is by using pipes.
+
+Currently we a recieving data down a stream, we're filling up a buffer, when it is full it sends on a chunk of data, then we're manually listnening
+
+out for this event when we recieve the data. We then get that chunk of data and manually write it to our write stream and send it somewhere else.
+
+A pipe can help us do exactly the same thing. Take data from a read stream and then pipe it into a write stream. 
+
+Once the buffer sends out the data instead of manually listening for it when we recieve the chunk of data the pipe just automatically does that for us.
+
+It then pipes it to the write stream that we want to send our data to. So we don't have to manually llisten for the data event and we dont have to 
+
+manually write to a write stream the pipe does that for us.
+
+So how doe we do this in the code:
+
+We still need to create a read stream to read date from.
+
+And we still need to create a write stream because that is where we will write the data.
+
+The change is where we are manually listening for the data event and writing to the stream.
+
+So we remove that part of the code and instead on the readable stream we can use a method called pipe.
+
+myReadStream.pipe()
+
+We can only use this method on readable streams because we are piping from a readable stream to a writabel stream.
+
+Thats the whole act. We can't pipe from a writeable stream as it can't read from that.
+
+So we need to pipe the data from the readable stream to the writeable stream. 
+
+```
+myReadStream.pipe(myWriteStream)
+```
+
+All the code we wrote before is doing the same thing. Our code should now look like:
+
+```
+var http = require("http")
+var fs = require("fs")
+
+var myReadStream = fs.createReadStream(__dirname + '/readMe.txt', 'utf8')
+var myWriteStream = fs.createWriteStream(__dirname + '/writeMe.txt', 'utf8')
+
+myReadStream.pipe(myWriteStream)
+```
+
+So now we will return to the server we created a few tutorials back.
+
+```
+var http = require("http")
+var fs = require("fs")
+
+var myReadStream = fs.createReadStream(__dirname + '/readMe.txt', 'utf8')
+var myWriteStream = fs.createWriteStream(__dirname + '/writeMe.txt', 'utf8')
+
+myReadStream.pipe(myWriteStream)
+
+var server = http.createServer(function(request, response){
+  response.writeHead(200,{"Content-Type":"text/plain"})
+  response.end("Hey ninjas")
+})
+
+server.listen(3000, "127.0.0.1")
+console.log("yo dawgs, now listening on port 3000")
+
+```
+Because we're going to use the idea of piping from a readable stream to a writable stream to send data to a user.
+
+The last time we created a server we sent back some plain text and the plain text was "Hey ninjas"
