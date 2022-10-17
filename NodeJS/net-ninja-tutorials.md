@@ -1219,3 +1219,103 @@ console.log("yo dawgs, now listening on port 3000")
 Because we're going to use the idea of piping from a readable stream to a writable stream to send data to a user.
 
 The last time we created a server we sent back some plain text and the plain text was "Hey ninjas"
+
+So what if we want to send back the content of this readMe.txt. Well we can read from the file and write to the writable stream
+
+response.end and send it to the data. We can do that where we liten for data events or we can use the pipe method.
+
+So we need to take our code and past it into our server variable:
+
+```
+var http = require("http")
+var fs = require("fs")
+
+var server = http.createServer(function(request, response){
+  response.writeHead(200,{"Content-Type":"text/plain"})
+  
+  var myReadStream = fs.createReadStream(__dirname + '/readMe.txt', 'utf8')
+  var myWriteStream = fs.createWriteStream(__dirname + '/writeMe.txt', 'utf8')
+  myReadStream.pipe(myWriteStream)
+  
+  response.end("Hey ninjas")
+})
+
+server.listen(3000, "127.0.0.1")
+console.log("yo dawgs, now listening on port 3000")
+
+```
+
+So currently we are reading our data myReadStream and Writing the data myWriteStream to writeMe.txt. But we don't want to do that.
+
+We want to send it to our client. We want to send it to our response stream. Remember the response object is a writable stream
+
+which we can write data to. 
+
+So we can remove:
+
+```
+var myWriteStream = fs.createWriteStream(__dirname + '/writeMe.txt', 'utf8')
+```
+
+and instead of piping it to my write stream we pipe it to the response.
+
+```
+myReadStream.pipe(response)
+```
+
+and now we can get rid on the repsonse.end("Hey Ninjas") as myReadStream.pipe(response) will end the response.
+
+It sends data down the stream to the client. Now if we save it and run it and go to port 3000 we will see all the data we read and wrote. 
+
+We have sent the data down a stream which is much better for perfomance than reading the whole file and then sending it.
+
+To recap, we created a server, we have a request object and response object, this response object is a writable stream so we can write to it.
+
+We then wrote our response headers saying writeHead setting the status to 200 and setting the content type text/plain because that is
+
+what we're reading. We then create the read stream which uses the fs module to create a read stream and reads the contents of the file. We
+
+also specify the utf8 encoding so we get it back in the expected characters. We have then taken that read stream and piped it into the response 
+
+stream and that is doing all the heavy lifting for us listening to that data event and whenever we get data streaming it to the user bit by bit
+
+so they recieve data quicker. 
+
+#### Serving HTML pages Video 17
+
+we create an html page index.html.
+
+Similar to the previous code, however we make some changes.
+
+We change the content-type to text/html so then the browser knows what to do with html.
+
+We change the file we are reading to /index.html
+
+The code will read as:
+
+```
+var http = require("http")
+var fs = require("fs")
+
+var server = http.createServer(function(request, response){
+  response.writeHead(200,{"Content-Type":"text/html"})
+  
+  var myReadStream = fs.createReadStream(__dirname + '/index.html', 'utf8')
+  myReadStream.pipe(res)
+})
+
+server.listen(3000, "127.0.0.1")
+console.log("yo dawgs, now listening on port 3000")
+```
+
+#### Serving JSON Video 18
+
+On The last tutorial 
+
+
+
+
+
+
+
+
