@@ -1310,10 +1310,238 @@ console.log("yo dawgs, now listening on port 3000")
 
 #### Serving JSON Video 18
 
-On The last tutorial 
+On The last tutorial we sent html to the browser to the client, we did that via a read stream and then piping it to the response.
 
+In this tutorial we will send back some json insteaad. This time we will not use streams. I'm just going to send it to the response object
 
+directly by using the end method. So how do we do this!
 
+We currently have this code set up.
+
+```
+var http = require("http")
+var fs = require("fs")
+
+var server = http.createServer(function(request, response){
+  response.writeHead(200,{"Content-Type":"text/html"})
+  
+  var myReadStream = fs.createReadStream(__dirname + '/index.html', 'utf8')
+  myReadStream.pipe(res)
+})
+
+server.listen(3000, "127.0.0.1")
+console.log("yo dawgs, now listening on port 3000")
+```
+
+First we need to chnage the content-type to application/json because this is what we are sending to the browser.
+
+Next lets create an object with some properties that we want to send back as json: var myObj = {name: "Ryu", job: "ninja", age: 29}.
+
+Now that we have our object we want to send this back as json to the client. We do that coding: response.end() now wecant just enter myObj into
+
+the parenthesis as .end expects either a string or a buffer and are object is neihter of those its an object. So we need to turn it into a string
+
+and that string needs to be in json format. We can do that using JSON.stringify. So we have response.end(JSON.stringfy(myObj)).
+
+If we now run that code we will see returned in the browser on localhost:3000 we will see all that data returned to us as json a json string.
+
+```
+var http = require("http")
+var fs = require("fs")
+
+var server = http.createServer(function(request, response){
+  response.writeHead(200,{"Content-Type":"application/json"})
+  var myObj = {
+    name: "Ryu",
+    job: "Ninja",
+    age: 29
+  }
+  
+  response.end(JSON.stringify(myObj))
+  
+})
+
+server.listen(3000, "127.0.0.1")
+console.log("yo dawgs, now listening on port 3000")
+```
+
+So why would we want to return some json to someone? Why would someone request this in a browser? Imagine we had some javascript running on the
+
+front end of our applicstion in the browser. Now that javascript might make this request, not in localhost:3000 and this string may be an API endpoint
+
+thats going to return som json. Imagine the request was to localhost:3000/api/ninjas and its going to send us back this data. Now we've not done routing
+
+in this tutorial but just imaging this url returned the json then we can return that to the front end javascript in the browser so then it can 
+
+do something with that json. It could output that json to the screen in a particular area in the html and update the view for the user. And thats 
+
+why we do it typically.
+
+#### Basic Routing Video 19
+
+```
+var http = require("http")
+var fs = require("fs")
+
+var server = http.createServer(function(request, response){
+  console.log("Request was made: " + req.url)
+  response.writeHead(200, {"Content-Type":"text/plain"})
+  response.end("feed me popcorn")
+  
+server.listen(3000, "127.0.0.1")
+console.log("yo dawgs, now listening on port 3000")
+})
+```
+Here we have a server set up and when we make a request to this server we're writing our headers on the response object and then we're ending the
+
+response by sending a string "feed me popcorn". And you can see the Content-Type is set to text/plain. So if we run this we will see in the browser
+
+on localhost:3000 the string "feed me popcorn". It  doesn't matter what url i put, for example - localhost:3000/api, we will still have the string
+
+shown on the page in the browser. So no matter what request I make i am getting the same data feed back. In a real world application we will want
+
+to distinguish between differnet url's and send them data dependant on what they are requesting. For example if the request localhost:3000/home
+
+we will want to send them the index page / home page. or localhost:3000/contact we would want to send them the contact page. And if the request
+
+localhost:3000/api we will want to send them some data. To do this we need to set up a routing system in node.js. If you notice in the code when ever
+
+we make a request to the server we logging to the console and we're accessing a property on the request object called url. So we are listening to what
+
+ever the user is typing into the address bar and we can log that to the console. So we know what they're requesting, therfore we can use this to
+
+check what they've requested and then send them data dependant on that request.
+
+So lets do that, let's get rid of this response and do a simple if statementto check what they're requesting and then send them something 
+
+dependant on that request. We will say if the request .url is strictlly equal to "/home" or if request .url is strictly equal to just "/"
+
+then we want to send them the index.html file. So lets do that - we write our request headers with the status and the Content-Type, we then need to
+
+create a read stream to read this file we tdo this with fs.createReadStream and parse the file we want to read in the current directory and
+
+concatinate it with /index.html we then need to pipe that to the response object and that will send it to us.
+
+So in our code we have
+
+```
+var http = require("http")
+var fs = require("fs")
+
+var server = http.createServer(function(request, response){
+  console.log("Request was made: " + req.url)
+  if (request.url === "/home" || request.url === "/"){
+    response.writeHead(200, {"Content-Type": "text/html"})
+    fs.createReadStream(__dirname + "/index.html").pipe(response)
+  }
+  
+server.listen(3000, "127.0.0.1")
+console.log("yo dawgs, now listening on port 3000")
+})
+```
+Now in the browser if we go to localhost:3000/home then we should get the homepage.  However if we type anything else the browser will 
+
+time out after searching as it can't find anything. So we can specify some more routes. We do this by folling up our if statement with 
+
+else if.
+
+```
+var http = require("http")
+var fs = require("fs")
+
+var server = http.createServer(function(request, response){
+  console.log("Request was made: " + req.url)
+  if (request.url === "/home" || request.url === "/"){
+    response.writeHead(200, {"Content-Type": "text/html"})
+    fs.createReadStream(__dirname + "/index.html").pipe(response)
+  } else if(request.url === "/contact"){
+    response.writeHead(200, {"Content-Type": "text/html"})
+    fs.createReadStream(__dirname + "/contact.html").pipe(response)
+  }
+  
+server.listen(3000, "127.0.0.1")
+console.log("yo dawgs, now listening on port 3000")
+})
+```
+
+We have set up a route to our contact.html page. If we go to the browser and search either localhost:3000/home or localhost:3000/contact we 
+
+will be served the relevant page.
+
+So what if we want to send back some json instead. Like some kind of api endpoint. We can create another else if and do that:
+
+```
+var http = require("http")
+var fs = require("fs")
+
+var server = http.createServer(function(request, response){
+  console.log("Request was made: " + req.url)
+  if (request.url === "/home" || request.url === "/"){
+    response.writeHead(200, {"Content-Type": "text/html"})
+    fs.createReadStream(__dirname + "/index.html").pipe(response)
+  } else if(request.url === "/contact"){
+    response.writeHead(200, {"Content-Type": "text/html"})
+    fs.createReadStream(__dirname + "/contact.html").pipe(response)
+  } else if(request.url === "/api/ninjas"){
+    var ninjas = [{name:"Chris", age: 39},{name: "Louise", age: 40}]
+    response.writeHead(200, {"Content-Type": "application/json"})
+    response.end(JSON.stringify(ninjas))
+  }
+  
+server.listen(3000, "127.0.0.1")
+console.log("yo dawgs, now listening on port 3000")
+})
+```
+
+We have set our else if with the endpoint "/api/ninjas" then inside created a variable = to an array of objects. In each object we give the
+
+properties of name and age. In a real world application we would get this data from a database rather than just difining it here. So were going to
+
+send this data as json to the browser to the client. First we set response.writeHead to status 200 and content type to application/json. Now lets
+
+send that to the browser with response.end. Remember .end expects a string or a buffer so we need to stringify the json we send. If we save and run
+
+search for localhost:3000/api/ninjas we will get the json data back. 
+
+So we have set up several routes. However still if we search for something that is not set up then we won't get anything back. Ideally what we want
+
+to do is send the user a 404 page to say we have not found what you're looking for. To do that we will set up a catch all at the bottom.
+
+We will do this in an else at the end of the if else statement. So if the user has typed in anything else other than the routes we have specified
+
+then we'll send a 404 page.
+
+```
+var http = require("http")
+var fs = require("fs")
+
+var server = http.createServer(function(request, response){
+  console.log("Request was made: " + req.url)
+  if (request.url === "/home" || request.url === "/"){
+    response.writeHead(200, {"Content-Type": "text/html"})
+    fs.createReadStream(__dirname + "/index.html").pipe(response)
+  } else if(request.url === "/contact"){
+    response.writeHead(200, {"Content-Type": "text/html"})
+    fs.createReadStream(__dirname + "/contact.html").pipe(response)
+  } else if(request.url === "/api/ninjas"){
+    var ninjas = [{name:"Chris", age: 39},{name: "Louise", age: 40}]
+    response.writeHead(200, {"Content-Type": "application/json"})
+    response.end(JSON.stringify(ninjas))
+  } else{
+    response.writeHead(404, {"Content-Type": "text/html"})
+    fs.createReadStream(__dirname + "/404.html").pipe(response)
+  }
+  
+server.listen(3000, "127.0.0.1")
+console.log("yo dawgs, now listening on port 3000")
+})
+```
+
+You'll see we can still send something, we can set up a 404.html page which will be sent. If we run the application and enter a url endpoint 
+
+that is not specified we will be served the 404.html page.
+
+#### The node package manager Video 20
 
 
 
