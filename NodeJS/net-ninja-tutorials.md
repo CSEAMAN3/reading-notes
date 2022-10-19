@@ -1798,12 +1798,85 @@ Express identified it was a string there was no need for us to tyoe in the "Cont
 
 #### Route Parameters Video 24
 
-Route parameters in express 
+At the moment we are just responding to static requests "/" and "/contact". But what if we wanted some kind of dynamic request. For example say 
+
+we had a social network site and one particular route would be /profile/theID of that profile. Now I wouldn't want to set up a response method
+
+to each ID seperatly. I want to recognise when someone is requesting  a profile page and then grab that id from the url so I can do
+
+something with it. We can do that using route variables or route parameters.
+
+So lets go ahead a create another get method which is going to respond to a particular request. Lets respond to the request /profile/:id
+
+so we want to view a profile then we want to view the id of the profile. To do this we use a colon : then id.  So the request may be 
+
+/profile/123 and that id may corresspond to a particular person in a database. So we can make some kind of database query and then return that
+
+data from the database and inject is into our html and return it to the user. This is a little bit beyond the scope of this tutorial for now
+
+we're just looking at route parameters. Once we have enetered our endpoint "/profile/:id" we will fire a function which again will take our 
+
+request and response objects as parameters so then we can actually access this id in the endpoint //profile/:id that the user input and requested
+
+on the request object. For now we will use the response.send method and send some text back to the user stating "You requested to see a profile
+
+with the id of" then we will concatenate the id that the user has entered. But how do we access it? We access it on the request object by saying
+
+request.params.id - this is callingthe request object, request. , followed by the property, params , which is going to store the :id parameter in
+
+it, request.params. , and then we just need to state the parameter name which is id. So we have request.params.id
+
+```
+const express = require("express")
+
+const app = express()
+
+app.get("/", (request, response)=>{
+  response.send("This is the homepage")
+})
+
+app.get("/contact", (request, response)=>{
+  response.send("This is the contact page")
+})
+
+app.get("/profile/:id", (request, response)=>{
+  response.send("You requested to see a profile with the id of " + request.params.id)
+})
 
 
 
+app.listen(3000)
+```
 
+If we run this and open the browser entering into the address bar localhost:3000/profile/123 it will return the response on the page:
 
+You requested to see a profile with the id of 123
+
+If we enter into the address bar localhost:3000/profile/678341 it will returnt the response on the page:
+
+You requested to see a profile with the id of 678341
+
+We have successfully accessed this parameter that we parsed through on our request by using request.params
+
+Where we state the parameter in the endpoint, we could call it anything we like it doesn't have to be id. We could use the parameter of
+
+name so app.get("/profile/:name"). then in our response we just change id to name also to match: 
+
+response.send("You requested to see a profile with the id of " + request.params.name)
+
+Now in the brower if we search localhost:3000/profile/louise 
+
+We will see the returned response of:
+
+You requested to see a profile with the id of louise
+
+So this is a very cool way to set up routes when the routes are dynamic and change and it has the same structure that all profiles have.
+
+So we are saying look for when profile is in the url the / somethingand bring me back that something on the params so I can do something 
+
+with it, maybe query a database and then return some data dependant on it. 
+
+#### Templating Engines Video 25
 
 
 
