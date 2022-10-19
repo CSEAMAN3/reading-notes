@@ -1543,6 +1543,105 @@ that is not specified we will be served the 404.html page.
 
 #### The node package manager Video 20
 
+For short the node package is known as npm.
+
+In the last tutorial we looked at basic routing, this coudl become tiresome. Fortunately there is a package called express that will really 
+
+help us slim this down and create web applications on node. To do that we need to know about the node package manager. 
+
+The npm comes installed with node.js when you installed that. It is basically a just a bunch of command line tools which can help us install
+
+third party packages or modules to help out with our node projects. Express is one of these packages and there are many more.
+
+A node package is essentially a bunch of code that someone else has written and it helps us perform a certain type of task within node.js
+
+applications. For example the express package helps us with routing and templating and such. The idea is that we can load these packages into
+
+our node application and then use thier functionality in our code. The way we do that is using the npm. Using the npm we can install packages
+
+update packages or even publish our own pakages for other people to use. On the npm website www.npmjs.com
+
+Here we install express using npm install express in the terminal. You will see a huge number of pakages have been installed and express is amongst
+
+them. The extra files are dependencies, Express depends on these other modules - node has recognised that and installed the other pakages for us
+
+aswell. We don't need to work with these other packages directly, we've just installed express the other modules were installed with it so express 
+
+can work properly. Now we can use express in our application.
+
+As we're not going to do that yet we will uninstall express to do that we enter the command npm uninstall express  into the terminal. 
+
+#### Package.json Video 21
+
+In the last tutorial we talked about npm and how we can us it to install packages into our application.
+
+You can install one package you can install 10 packages but either way it is a good idea to keep track of which packages your installing and
+
+which packages your application depends on. The dependencies your application depends on. In node.js we can do that. We can use a package.json
+
+file to keep track of all of those packages that we depend on. We can either create this manually or we can use a command in node.js to do it for us.
+
+to do this we enter the command npm  init. When we run this is will ask us several questions about our project. First it asks for a nam, it will
+
+suggest a default, it will then ask us what version, version 1 will be default thats fine, it will then ask us for a description which we can fill in.
+
+It will the ask us for the entry point of our application, default will be app.js this is fine, it will then aska test command, we don't have one of
+
+those thats fine git repository just hit enter, keywords you can fill in, author enter you. Licence is fine as it is. Is this ok? yes. Answering all
+
+these will go ahead and create a pakage.json file. One of the cool things about this package.json file is that it can keet track of our dependancies
+
+that we need to run our application. Say we install some packages and our application depends on those, now if we pass on our code to another developer
+
+we don't normally pass on the packages aswell, just our core application code that we have written. For that developer to run our application the will
+
+need to install the same packages that we did becuase our application depends on them. They know what packages to install as they are listed in the 
+
+package.json file. How do we add them to this file how does it keep track of it. When we install a package in node.js using the npm we can pass through
+
+a save flagand that will save that pakage as a dependency in the package.json file.
+
+So if we install express again - npm install express -save - this is to say look this is a dependancy. 
+
+It will go ahead and install express as normal, then once it has installed express it will update the package.json file. You will see 
+
+dependencies listed and express as an item in the list on the package.json file.
+
+Now if we unistall express npm uninstall express. This will remove all those files express is now uninstalled. However you will notice express is 
+
+still listed in our dependencies. The reason it does that is because even though we don't have express installed we have listed it as a 
+
+dependency so it is telling us we need to install this for our application to work. To unlist it as a dependancy we just unlist it. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
