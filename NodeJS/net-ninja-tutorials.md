@@ -1607,13 +1607,198 @@ It will go ahead and install express as normal, then once it has installed expre
 
 dependencies listed and express as an item in the list on the package.json file.
 
-Now if we unistall express npm uninstall express. This will remove all those files express is now uninstalled. However you will notice express is 
+Now if we unistall express npm uninstall express. This will remove all those files express is now uninstalled. However you will notice express 
 
-still listed in our dependencies. The reason it does that is because even though we don't have express installed we have listed it as a 
+is still listed in our dependencies. The reason it does that is because even though we don't have express installed we have listed it as a 
 
-dependency so it is telling us we need to install this for our application to work. To unlist it as a dependancy we just unlist it. 
+dependency so it is telling us we need to install this for our application to work. To unlist it as a dependancy we just unlist it.
 
+Now lets say we have a list of dependencies and we pass our code on to another developer, if they want to install all of the ses pakages
 
+they don't need to do them all manually. They can use one command which is npm install. When we run this node will look for this package.json
+
+file, find the dependencies and every dependency list will install into the version they're running. 
+
+#### Installing Nodemon Video 22
+
+Now we know how to use the npm and how to install pakages. Before we start with express I want to install nodemon.
+
+Nodemon is a package for when you're developing, what it does is monitor your application files so when it is running in a browser and
+
+we're listening to a server, if we make a change in a file, nodemon will monitor that so when we save the file it restarts the server 
+
+automatically for us.
+
+When you install it you can install it with a g flag: npm install -g nodemon. This g flag means we are installing it globally.
+
+This means no matter what application we work with on our computerwe can use nodemon. 
+
+So if we install using npm install -g nodemon we will not see the files on VSCode as they will install somewhere else globally.
+
+the way this now works is instead of running npm start / node app to run our application we run nodemon app.js on. 
+
+Note: we have currently been using nodemon server in the server on the terminal to run our application.
+
+This is a much better way of working as we it refreshes everythime we save with out having to enter any commands for it to work.
+
+#### Introduction to express Video 23
+
+Express
+  
+  - Easy and flexible routing system
+  - integrates with many templating engines
+  - contains a middleware framework
+
+We're going to start afresh from the code in previous tutorials and create an express app.
+
+make sure express is installed npm install express -save to save it in the dependencies.
+
+The first thing we need to do to use express is require it in our code. Express is jsut a module written in javascript which we can 
+
+use in our application. So to require this we enter the following code into our server.js.
+
+const express = require("express")
+
+We now have access to this module. What we need to do next is set up what is known as an express app. That way we get acces to all of the
+
+functionality that express comes baked with. To do that we store it in a variable called app:
+
+const app = express()
+
+App equals express invoked because what is returned to us, on module.exports in this module, is a function. So we go ahead and fire that function
+
+when we call app so then we have access to all of the different methods on express which help us with things such as routing.
+
+Now we also need to listen to a port. To do this in express we use:
+
+app.listen()
+
+We give app.listen a port number, so app.listen(3000) so we are now listening oon port 3000.
+
+In the code so far we have our express app running and now we're listening to a port. but how do we respond to requests?
+
+When we set up the app variable we are given access to a variety of mehtods on it that can help us respond to requests.
+
+These methods all corresspond to the type of requests being made. They are what is known as http verbs or methods.
+
+Http methods are the types of requests we make. 
+
+  - GET
+  - POST
+  - DELETE
+  - PUT
+
+These are all requests that wor in the same way as each other. However each different type of request contains a specific peice of information 
+
+attached to it to say to the server what kind of request it is. Then it is up to the server to look at what type of request it is and then treat 
+
+that type of request in a particular way.
+
+By using express in node we can respond to each of these different types of requests very easily. The way we do that is by using the 
+
+methods that express provides us with:
+
+Responding to requests:
+
+  - GET - app.get("route", fn)
+  - POST - app.post("route", fn)
+  - DELETE - app.delete("route", fn)
+
+First we going to stick with the get requests, typing a url into the address bar and then getting something back from the server.
+
+So we are listening to a port and we want to respond to a get request.  We know we can do this using app.get().
+
+The first thing we put inside the get method is the route. So app.get("route"). What is a user going to type in so that we can respond in this 
+
+particular way. For now lets just set the route to /. So we have:
+
+```
+const express = require("express")
+
+const app = express()
+
+app.get("/")
+
+app.listen(3000)
+```
+
+Following the route we're going to fire a function when the user requests this root directory. The function will take the request object and 
+
+response object but express has extended these objects and added additional functionality to them.
+
+```
+const express = require("express")
+
+const app = express()
+
+app.get("/", (request, response)=>{})
+
+app.listen(3000)
+```
+
+So when a user goes to /it will fire the function. We can respond to it in a particular way. For now lets jsut send a string. 
+
+to this we use response.send() and parse our string into the parenthesis:
+
+```
+const express = require("express")
+
+const app = express()
+
+app.get("/", ()=>{
+  response.send("This is the homepage")
+})
+
+app.listen(3000)
+```
+
+If we now run this using nodemon and view in a browser we will get this string back as our repsonse.
+
+Express has listened for this get request when it recieves that request it fires the function and on the response object 
+
+it uses the express method .send and in this instance it sends the string.
+
+Notice we have not specified the Content-Type here in the headers. Express is clever enough to know what this is and do it for us.
+
+Now lets set up another route. Well listen for the endpoint of /contact and we will change our response to a string that says 
+
+"this is the contact page".
+
+```
+const express = require("express")
+
+const app = express()
+
+app.get("/", (request, response)=>{
+  response.send("This is the homepage")
+})
+
+app.get("/contact", (request, response)=>{
+  response.send("this is the contact page")
+})
+
+app.listen(3000)
+```
+
+So in the address bar if we go to localhost:3000/contact we will see the response - this is the contact page.
+
+You can see how much easier this is to set up a route than before without express.
+
+Don't worry for now about just sending strings, we will look at sending html pages and other things such as json.
+
+To recap:
+
+We required the module express, then set up our express app setting app equal to express invoked, then we listened to a port, 
+
+then we set up our routes using get requests with app.get, we responded to the / and then the /contact request. When we did that we fired 
+
+the functions which take the request and response object extended by express, we used the send method on the response object to send a string.
+
+Express identified it was a string there was no need for us to tyoe in the "Content-Type".
+
+#### Route Parameters Video 24
+
+Route parameters in express 
 
 
 
