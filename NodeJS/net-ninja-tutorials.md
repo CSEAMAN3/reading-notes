@@ -1878,11 +1878,44 @@ with it, maybe query a database and then return some data dependant on it.
 
 #### Templating Engines Video 25
 
+So far we have just been sending back these strings "This is the homepage", "This is the contact page" and this dynamic string with the parameters 
 
+of the name they pop intot he url ""You are viewing the profile of " + request.params.name. The dynamic string referes to our endpoint which is 
 
+app.get("/profile/:name"). But what if we want to send back an html page, well we can do that by using the sendFile() and placing the absolute url
 
+to the file inbetween the parameters. We can use dirname to get the directory of the current file and then concatinate that with the file name i 
 
+want to send "/index.html". Example code:
 
+```
+app.get("/", (request, response) =>{
+  response.send(__dirname + "/index.html")
+})
+```
+
+We could also do the same thing for the contact page.
+
+```
+app.get("/contact", (request, response) =>{
+  response.send(__dirname + "/contact.html")
+})
+```
+if we now run this and open it in the browser we will see the root localhost:3000 gets the homepage and the endpoint of /contact will get the 
+
+contact page. But what if we want to inject some dynamic content into these pages. Say some data from a database. For example on our route 
+
+/profile/:name we are saying we're going to display the profile for that person, so far we have responded with the name in a string but what if
+
+we wanted to return an html page with this name on and some other information about that person. I want to inject some dynamic content into 
+
+this and thats where template engines come into play. With a javascript template engine what we can do is embed data in javascript code and into
+
+our html files. So we can inject this dynamic content into the file which we return to the client or browser. There is a variety of different 
+
+engines we can use with express, we're going to look at one called EJS which is a lightweight templating engine making it really easy to get
+
+started with.
 
 
 
