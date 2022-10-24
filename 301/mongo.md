@@ -2,6 +2,8 @@
 
 ###### Links
 
+https://aws.amazon.com/nosql/
+
 https://mongoosejs.com/docs/api.html#Model
 
 https://v5.reactrouter.com/web/api/BrowserRouter
@@ -148,8 +150,26 @@ High-performance: NoSQL database are optimized for specific data models and acce
 
 Highly functional: NoSQL databases provide highly functional APIs and data types that are purpose built for each of their respective data models.
 
+Types of NoSQL databases
 
+###### Key-value: 
 
+Key-value databases are highly partitionable and allow horizontal scaling at scales that other types of databases cannot achieve. Use cases such as gaming, ad tech, and IoT lend themselves particularly well to the key-value data model. Amazon DynamoDB is designed to provide consistent single-digit millisecond latency for any scale of workloads. This consistent performance is a big part of why the Snapchat Stories feature, which includes Snapchat's largest storage write workload, moved to DynamoDB.
 
+###### Document:
+
+In application code, data is represented often as an object or JSON-like document because it is an efficient and intuitive data model for developers. Document databases make it easier for developers to store and query data in a database by using the same document model format that they use in their application code. The flexible, semistructured, and hierarchical nature of documents and document databases allows them to evolve with applications’ needs. The document model works well with catalogs, user profiles, and content management systems where each document is unique and evolves over time. Amazon DocumentDB (with MongoDB compatibility) and MongoDB are popular document databases that provide powerful and intuitive APIs for flexible and iterative development.
+
+###### Graph:
+
+A graph database’s purpose is to make it easy to build and run applications that work with highly connected datasets. Typical use cases for a graph database include social networking, recommendation engines, fraud detection, and knowledge graphs. Amazon Neptune is a fully-managed graph database service. Neptune supports both the Property Graph model and the Resource Description Framework (RDF), providing the choice of two graph APIs: TinkerPop and RDF/SPARQL. Popular graph databases include Neo4j and Giraph.
+
+###### In-memory:
+
+Gaming and ad-tech applications have use cases such as leaderboards, session stores, and real-time analytics that require microsecond response times and can have large spikes in traffic coming at any time. Amazon MemoryDB for Redis is a Redis-compatible, durable, in-memory database service that delivers microsecond read latency, single-digit millisecond write latency, and Multi-AZ durability. MemoryDB is purpose-built to deliver ultra-fast performance and durability so you can use it as your primary database for modern, microservices applications. Amazon ElastiCache is a fully managed, in-memory caching service compatible with both Redis and Memcached, to serve low-latency, high-throughput workloads. Customers like Tinder, who require real-time response from their applications, rely on in-memory data stores rather than disk-based data stores. Amazon DynamoDB Accelerator (DAX) is another example of a purpose-built data store. DAX makes DynamoDB reads an order of magnitude faster.
+
+###### Search: 
+
+Many applications output logs to help developers troubleshoot issues. Amazon OpenSearch Service is purpose-built for providing near-real-time visualizations and analytics of machine-generated data by indexing, aggregating, and searching semistructured logs and metrics. Amazon OpenSearch Service is also a powerful, high-performance search engine for full-text search use cases. Expedia is using more than 150 Amazon OpenSearch Service domains, 30 TB of data, and 30 billion documents for a variety of mission-critical use cases, ranging from operational monitoring and troubleshooting to distributed application stack tracing and pricing optimization.
 
 
