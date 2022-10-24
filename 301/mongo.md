@@ -138,6 +138,15 @@ If a product name changes for example you may have to udate this in multiple col
 
 
 
+### NoSQL
+
+Flexibility: NoSQL databases generally provide flexible schemas that enable faster and more iterative development. The flexible data model makes NoSQL databases ideal for semi-structured and unstructured data.
+
+Scalability: NoSQL databases are generally designed to scale out by using distributed clusters of hardware instead of scaling up by adding expensive and robust servers. Some cloud providers handle these operations behind-the-scenes as a fully managed service.
+
+High-performance: NoSQL database are optimized for specific data models and access patterns that enable higher performance than trying to accomplish similar functionality with relational databases.
+
+Highly functional: NoSQL databases provide highly functional APIs and data types that are purpose built for each of their respective data models.
 
 
 
